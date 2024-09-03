@@ -2,14 +2,13 @@
 
 @{
     ViewData["Title"] = "Index";
-}
-@{
     Layout = "~/Views/Shared/_Admin.cshtml";
 }
 <br />
 <br />
 <br />
 <br />
+
 <h1>Index</h1>
 
 <p>
@@ -52,7 +51,7 @@
                 @Html.DisplayFor(modelItem => item.Userpassword)
             </td>
             <td>
-                    <img src="@Url.Content("~/Images/"+item.Userimage)" asp-append-version="true" width="100" height="100" />
+               <img src="@Url.Content("~/Images/"+item.Userimage)" asp-append-version="true" width="100" height="100"/>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Googleid)

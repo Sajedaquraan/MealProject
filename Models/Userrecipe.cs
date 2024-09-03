@@ -8,18 +8,18 @@ public partial class Userrecipe
 {
     public decimal Recipesid { get; set; }
 
-    public string Title { get; set; } = null!;
+    public string? Title { get; set; }
 
-    public string Ingredients { get; set; } = null!;
+    public string? Ingredients { get; set; }
 
     public string? Video { get; set; }
 
     public string? Image { get; set; }
-
+    [NotMapped]
+    public virtual IFormFile ImageFile { get; set; }
     public DateTime? CreatedAt { get; set; }
 
-    public decimal Userloginid { get; set; }
-    [NotMapped]
-    public IFormFile ImageFile { get; set; }
-    public virtual Userlogin Userlogin { get; set; } = null!;
+    public decimal? Userloginid { get; set; }
+
+    public virtual Userlogin? Userlogin { get; set; }
 }

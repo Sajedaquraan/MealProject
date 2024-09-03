@@ -39,7 +39,7 @@ public partial class ModelContext : DbContext
 
         modelBuilder.Entity<Contact>(entity =>
         {
-            entity.HasKey(e => e.Contactid).HasName("SYS_C009137");
+            entity.HasKey(e => e.Contactid).HasName("SYS_C009160");
 
             entity.ToTable("CONTACT");
 
@@ -50,7 +50,6 @@ public partial class ModelContext : DbContext
             entity.Property(e => e.Contant)
                 .HasMaxLength(1000)
                 .IsUnicode(false)
-                .HasDefaultValueSql("NULL")
                 .HasColumnName("CONTANT");
             entity.Property(e => e.CreatedAt)
                 .HasPrecision(6)
@@ -68,7 +67,7 @@ public partial class ModelContext : DbContext
 
         modelBuilder.Entity<Customer>(entity =>
         {
-            entity.HasKey(e => e.Userid).HasName("SYS_C009117");
+            entity.HasKey(e => e.Userid).HasName("SYS_C009148");
 
             entity.ToTable("CUSTOMER");
 
@@ -103,7 +102,7 @@ public partial class ModelContext : DbContext
 
         modelBuilder.Entity<Likedrecipe>(entity =>
         {
-            entity.HasKey(e => e.Likedid).HasName("SYS_C009126");
+            entity.HasKey(e => e.Likedid).HasName("SYS_C009154");
 
             entity.ToTable("LIKEDRECIPE");
 
@@ -111,23 +110,22 @@ public partial class ModelContext : DbContext
                 .ValueGeneratedOnAdd()
                 .HasColumnType("NUMBER")
                 .HasColumnName("LIKEDID");
-            entity.Property(e => e.CreatedAt)
+            entity.Property(e => e.Createdat)
                 .HasPrecision(6)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
-                .HasColumnName("CREATED_AT");
-            entity.Property(e => e.RecipeData)
+                .HasColumnName("CREATEDAT");
+            entity.Property(e => e.Recipedata)
                 .HasMaxLength(1000)
                 .IsUnicode(false)
-                .HasColumnName("RECIPE_DATA");
-            entity.Property(e => e.RecipeImage)
+                .HasColumnName("RECIPEDATA");
+            entity.Property(e => e.Recipeimage)
                 .HasMaxLength(1000)
                 .IsUnicode(false)
-                .HasDefaultValueSql("NULL")
-                .HasColumnName("RECIPE_IMAGE");
-            entity.Property(e => e.RecipeLabel)
+                .HasColumnName("RECIPEIMAGE");
+            entity.Property(e => e.Recipelabel)
                 .HasMaxLength(1000)
                 .IsUnicode(false)
-                .HasColumnName("RECIPE_LABEL");
+                .HasColumnName("RECIPELABEL");
             entity.Property(e => e.Userloginid)
                 .HasColumnType("NUMBER")
                 .HasColumnName("USERLOGINID");
@@ -140,7 +138,7 @@ public partial class ModelContext : DbContext
 
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.Roleid).HasName("SYS_C009112");
+            entity.HasKey(e => e.Roleid).HasName("SYS_C009146");
 
             entity.ToTable("ROLE");
 
@@ -156,7 +154,7 @@ public partial class ModelContext : DbContext
 
         modelBuilder.Entity<Userlogin>(entity =>
         {
-            entity.HasKey(e => e.Userloginid).HasName("SYS_C009119");
+            entity.HasKey(e => e.Userloginid).HasName("SYS_C009150");
 
             entity.ToTable("USERLOGIN");
 
@@ -192,7 +190,7 @@ public partial class ModelContext : DbContext
 
         modelBuilder.Entity<Userrecipe>(entity =>
         {
-            entity.HasKey(e => e.Recipesid).HasName("SYS_C009132");
+            entity.HasKey(e => e.Recipesid).HasName("SYS_C009157");
 
             entity.ToTable("USERRECIPES");
 
@@ -207,7 +205,6 @@ public partial class ModelContext : DbContext
             entity.Property(e => e.Image)
                 .HasMaxLength(1000)
                 .IsUnicode(false)
-                .HasDefaultValueSql("NULL")
                 .HasColumnName("IMAGE");
             entity.Property(e => e.Ingredients)
                 .HasMaxLength(1000)
@@ -223,7 +220,6 @@ public partial class ModelContext : DbContext
             entity.Property(e => e.Video)
                 .HasMaxLength(1000)
                 .IsUnicode(false)
-                .HasDefaultValueSql("NULL")
                 .HasColumnName("VIDEO");
 
             entity.HasOne(d => d.Userlogin).WithMany(p => p.Userrecipes)

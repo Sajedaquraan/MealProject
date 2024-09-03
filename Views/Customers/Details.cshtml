@@ -2,14 +2,13 @@
 
 @{
     ViewData["Title"] = "Details";
-}
-@{
     Layout = "~/Views/Shared/_Admin.cshtml";
 }
 <br />
 <br />
 <br />
 <br />
+
 <h1>Details</h1>
 
 <div>
@@ -38,7 +37,7 @@
             @Html.DisplayNameFor(model => model.Userimage)
         </dt>
         <dd class = "col-sm-10">
-            <img src=@Url.Content("~/Images/"+Model.Userimage) asp-append-version="true" width="100" height="100" />
+            <img src="@Url.Content("~/Images/"+Model.Userimage)" asp-append-version="true" width="100" height="100" />
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Googleid)

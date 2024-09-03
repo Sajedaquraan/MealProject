@@ -8,16 +8,16 @@ public partial class Likedrecipe
 {
     public decimal Likedid { get; set; }
 
-    public string RecipeLabel { get; set; } = null!;
+    public string? Recipelabel { get; set; }
 
-    public string RecipeData { get; set; } = null!;
+    public string? Recipedata { get; set; }
 
-    public string? RecipeImage { get; set; }
-
-    public DateTime? CreatedAt { get; set; }
-
-    public decimal Userloginid { get; set; }
+    public string? Recipeimage { get; set; }
     [NotMapped]
-    public IFormFile ImageFile { get; set; }
-    public virtual Userlogin Userlogin { get; set; } = null!;
+    public virtual IFormFile ImageFile { get; set; }
+    public DateTime? Createdat { get; set; }
+
+    public decimal? Userloginid { get; set; }
+
+    public virtual Userlogin? Userlogin { get; set; }
 }

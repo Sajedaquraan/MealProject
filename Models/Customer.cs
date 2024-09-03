@@ -8,18 +8,17 @@ public partial class Customer
 {
     public decimal Userid { get; set; }
 
-    public string Username { get; set; } = null!;
+    public string? Username { get; set; }
 
-    public string Useremail { get; set; } = null!;
+    public string? Useremail { get; set; }
 
-    public string Userpassword { get; set; } = null!;
+    public string? Userpassword { get; set; }
 
     public string? Userimage { get; set; }
-
+    [NotMapped]
+    public virtual IFormFile ImageFile { get; set; }
     public decimal? Googleid { get; set; }
 
-    [NotMapped]
-    public IFormFile ImageFile { get; set; }
     public DateTime? Registerdate { get; set; }
 
     public virtual ICollection<Userlogin> Userlogins { get; set; } = new List<Userlogin>();

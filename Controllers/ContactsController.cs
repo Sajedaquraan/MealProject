@@ -13,7 +13,6 @@ namespace MealProject.Controllers
     {
         private readonly ModelContext _context;
 
-
         public ContactsController(ModelContext context)
         {
             _context = context;

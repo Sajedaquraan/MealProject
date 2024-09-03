@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MealProject.Models;
-using Microsoft.Extensions.Hosting;
 
 namespace MealProject.Controllers
 {
@@ -14,7 +13,6 @@ namespace MealProject.Controllers
     {
         private readonly ModelContext _context;
         private readonly IWebHostEnvironment _environment;
-
 
         public CustomersController(ModelContext context, IWebHostEnvironment environment)
         {
@@ -81,7 +79,7 @@ namespace MealProject.Controllers
 
                     customer.Userimage = fileName;
                 }
-                
+
                 _context.Add(customer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

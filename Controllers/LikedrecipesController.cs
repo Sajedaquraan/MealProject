@@ -17,7 +17,7 @@ namespace MealProject.Controllers
         public LikedrecipesController(ModelContext context, IWebHostEnvironment environment)
         {
             _context = context;
-            _environment = environment;
+            _environment= environment;
         }
 
         // GET: Likedrecipes
@@ -58,7 +58,7 @@ namespace MealProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Likedid,RecipeLabel,RecipeData,RecipeImage,CreatedAt,Userloginid,ImageFile")] Likedrecipe likedrecipe)
+        public async Task<IActionResult> Create([Bind("Likedid,Recipelabel,Recipedata,Recipeimage,Createdat,Userloginid,ImageFile")] Likedrecipe likedrecipe)
         {
             if (ModelState.IsValid)
             {
@@ -77,8 +77,9 @@ namespace MealProject.Controllers
                         await likedrecipe.ImageFile.CopyToAsync(fileStream);
                     }
 
-                    likedrecipe.RecipeImage = fileName;
+                    likedrecipe.Recipeimage = fileName;
                 }
+
                 _context.Add(likedrecipe);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -109,7 +110,7 @@ namespace MealProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(decimal id, [Bind("Likedid,RecipeLabel,RecipeData,RecipeImage,CreatedAt,Userloginid,ImageFile")] Likedrecipe likedrecipe)
+        public async Task<IActionResult> Edit(decimal id, [Bind("Likedid,Recipelabel,Recipedata,Recipeimage,Createdat,Userloginid,ImageFile")] Likedrecipe likedrecipe)
         {
             if (id != likedrecipe.Likedid)
             {
@@ -135,8 +136,9 @@ namespace MealProject.Controllers
                             await likedrecipe.ImageFile.CopyToAsync(fileStream);
                         }
 
-                        likedrecipe.RecipeImage = fileName;
+                        likedrecipe.Recipeimage = fileName;
                     }
+
                     _context.Update(likedrecipe);
                     await _context.SaveChangesAsync();
                 }
