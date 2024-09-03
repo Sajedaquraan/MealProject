@@ -1,0 +1,63 @@
+﻿@model MealProject.Models.Customer
+
+@{
+    ViewData["Title"] = "Delete";
+}
+@{
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+<br />
+<br />
+<br />
+<br />
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Useremail)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Useremail)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Userpassword)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Userpassword)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Userimage)
+        </dt>
+        <dd class = "col-sm-10">
+            <img src=@Url.Content("~/Images/"+Model.Userimage) asp-append-version="true" width="100" height="100" />
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Googleid)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Googleid)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Registerdate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Registerdate)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Userid" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>
