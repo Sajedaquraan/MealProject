@@ -1,0 +1,192 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Form</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="~/auth.css">
+
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Left Side Image -->
+            <div class="position-relative d-none d-md-block col-md-4 col-lg-6 p-0">
+                <img src="~/loginn.PNG" alt="Background"
+                     style="object-fit: cover; object-position: center" class="w-100 full-h">
+            </div>
+            <!-- Right Side Form -->
+            <div class="full-h d-flex justify-content-center align-items-center col-12 col-md-8 col-lg-6">
+                <div class="col-10 col-md-8 col-xl-6 d-flex flex-column justify-content-center align-items-center font-weight-medium p-0">
+                    <h2 class="main-color font-weight-bold">Let's Get Started!</h2>
+                    <span class="blur-color mt-4 mb-4 font-weight-normal text-center">Create new account to access all features</span>
+                    <hr class="separator mb-0 mt-1">
+                    <!-- Registration Form -->
+                    <form action="register.php" method="POST" id="registerForm" class="w-100 mb-3 mt-3">
+                        <div class="form-group mb-3">
+                            <label for="name" class="mb-2">Name</label>
+                            <input type="text" placeholder="Enter Name" id="name" name="name" class="form-control pt-3 pb-3 pl-3 pr-0 input-auth" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="email" class="mb-2">Email Address*</label>
+                            <input type="email" placeholder="Enter email address" id="email" name="email" class="form-control pt-3 pb-3 pl-3 pr-0 input-auth" required>
+                            <span id="email-message" class="text-danger"></span> <!-- Placeholder for error message -->
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="phone" class="mb-2">Phone Number</label>
+                            <input type="number" placeholder="08xxxxxxxxxx" id="phone" name="phone" class="form-control pt-3 pb-3 pl-3 pr-0 input-auth" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="password" class="mb-2">Create New Password</label>
+                            <input type="password" placeholder="Create New Password" id="password" name="password" class="form-control pt-3 pb-3 pl-3 pr-0 input-auth" required oninput="checkPasswordMatch()">
+                            <small id="password-length" class="form-text text-muted"></small>
+                            <small id="password-uppercase" class="form-text text-muted"></small>
+                            <small id="password-digit" class="form-text text-muted"></small>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="confirm_password" class="mb-2">Confirm Password</label>
+                            <input type="password" placeholder="Confirm Password" id="confirm-password" name="confirm_password" class="form-control pt-3 pb-3 pl-3 pr-0 input-auth" oninput="checkPasswordMatch()" required>
+                            <span id="password-message" class="text-muted"></span>
+                        </div>
+                        <div class="form-group mb-4 d-flex align-items-center" style="gap: 10px;">
+                            <input type="checkbox" class="checkbox" id="checkbox" required>
+                            <label for="checkbox">I agree to terms & conditions</label>
+                        </div>
+                        <button type="submit" id="register-button" class="login-btn submit w-100 btn-main pt-3 pb-3 font-weight-medium" disabled>
+                            Register Account
+                        </button>
+                    </form>
+                    <!-- Login Link -->
+                    <div class="w-100 d-flex flex-column">
+                        <div class="w-100 d-flex justify-content-center align-items-center">
+                            <span class="blur-color">
+                                Already have an account? <a href="@Url.Action("Login")" class="clicked text-decoration-none">Log In Here</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.11.6/dist/umd/popper.min.js"
+            integrity="sha384-oBqDVmMz4fnFO9gybBudbVbK2Qp2KStz9a5DeQcYihl4KSC4KxC7fYx04gHjJV8Y"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+            integrity="sha384-QJHtvGhmr9EXGCssDkE6daMF4kdS7BndFRAX3nC1JhFjqpb4aB9KK76P4jKY6p9G"
+            crossorigin="anonymous"></script>
+
+    <!-- JavaScript for Password Matching Check -->
+    <script>
+        var emailExists = false; // State variable to check if email exists
+
+        function checkPasswordMatch() {
+          var password = document.getElementById("password").value;
+          var confirmPassword = document.getElementById("confirm-password").value;
+          var messageElement = document.getElementById("password-message");
+          var registerButton = document.getElementById("register-button");
+
+          var isPasswordValid = true;
+
+          if (password === confirmPassword) {
+            messageElement.textContent = "Passwords match";
+            messageElement.className = "text-success"; // Set class for green color
+          } else {
+            messageElement.textContent = "Passwords do not match";
+            messageElement.className = "text-danger"; // Set class for red color
+            isPasswordValid = false;
+          }
+
+          // Check password strength and display requirements
+          var lengthElement = document.getElementById("password-length");
+          var uppercaseElement = document.getElementById("password-uppercase");
+          var digitElement = document.getElementById("password-digit");
+
+          // Reset messages
+          lengthElement.textContent = "";
+          uppercaseElement.textContent = "";
+          digitElement.textContent = "";
+
+          // Define password requirements
+          if (password.length < 8) {
+            lengthElement.textContent = "Password must be at least 8 characters long";
+            lengthElement.className = "text-danger"; // Set class for red color
+            isPasswordValid = false;
+          } else {
+            lengthElement.textContent = "Password length requirement met";
+            lengthElement.className = "text-success"; // Set class for green color
+          }
+          if (!password.match(/[A-Z]/)) {
+            uppercaseElement.textContent = "Password must contain at least one uppercase letter";
+            uppercaseElement.className = "text-danger"; // Set class for red color
+            isPasswordValid = false;
+          } else {
+            uppercaseElement.textContent = "Uppercase letter requirement met";
+            uppercaseElement.className = "text-success"; // Set class for green color
+          }
+          if (!password.match(/[0-9]/)) {
+            digitElement.textContent = "Password must contain at least one digit";
+            digitElement.className = "text-danger"; // Set class for red color
+            isPasswordValid = false;
+          } else {
+            digitElement.textContent = "Digit requirement met";
+            digitElement.className = "text-success"; // Set class for green color
+          }
+
+          // Enable/disable register button
+          if (isPasswordValid && password === confirmPassword && !emailExists) {
+            registerButton.disabled = false;
+          } else {
+            registerButton.disabled = true;
+          }
+        }
+
+        // JavaScript to handle email existence check message
+        document.getElementById("email").addEventListener("blur", function () {
+          var email = this.value;
+          var emailMessageElement = document.getElementById("email-message");
+          var registerButton = document.getElementById("register-button");
+
+          // Send AJAX request to server to check if email exists
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", "../check_email.php", true);
+          xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+              var response = xhr.responseText;
+              if (response === "exists") {
+                emailMessageElement.textContent = "Email already exists";
+                emailMessageElement.className = "text-danger"; // Set class for red color
+                registerButton.disabled = true; // Disable register button
+                emailExists = true; // Update state variable
+              } else {
+                emailMessageElement.textContent = "";
+                emailMessageElement.className = ""; // Reset class
+                emailExists = false; // Update state variable
+                // Call checkPasswordMatch to update register button status based on password validation
+                checkPasswordMatch();
+              }
+            }
+          };
+          xhr.send("email=" + encodeURIComponent(email));
+        });
+    </script>
+</body>
+
+</html>
+

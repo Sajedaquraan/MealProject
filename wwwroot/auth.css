@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
+
+
+
+
+.full-h {
+  min-height: 100vh;
+}
+
+img{
+  height: 100%;
+}
+
+
+h2{
+  margin-top: 30px;
+}
+
+.submit{
+  background-color: transparent;
+  font-weight: bold;
+  width: 200px;
+}
+
+.submit:hover{
+  background-color: black;
+  color: white;
+}
+
+
+.mask {
+  background-color: #EFC81A9D;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+}
+
+.main-color {
+  color: black;
+  text-align: left;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 2.125rem;
+    text-underline-offset: .4375rem;
+}
+
+.blur-color {
+  color: #8692A6;
+}
+
+.form-group label,
+.form-check label {
+  color: #696F79;
+}
+
+
+
+.btn-main:hover {  
+  color: #ffffff;
+}
+
+.clicked:hover {
+  text-decoration: underline;
+}
+
+.input-auth {
+  background-color: #ffffff !important;
+  box-sizing: border-box;
+  border-radius: 6px;
+}
+
+.input-auth:hover, .input-auth:focus {
+  box-shadow: 0px 4px 10px 3px rgba(0, 0, 0, 0.11) !important; 
+  border: 1px solid #EFC81A !important;
+}
+
+.font-weight-medium {
+  font-weight: 500;
+}
+
+.checkbox {
+  width: 15px;
+  height: 15px;
+  accent-color: #EFC81A;
+}
+
+.separator {
+  width: 100%;
+  border: 1px solid #F5F5F5;
+}
+
+.login-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  color: black;
+  cursor: pointer;
+  font-weight: 700;
+  width: 100%;
+
+  height: 56px;
+  max-width: 350px;
+  text-align: center;
+
+}
+
+.gmail-btn {
+  background-color: transparent;
+  margin-top: 20px;
+}
+
+.email-btn{
+  background-color: transparent;
+
+}
+
+
+.email-btn:hover {
+  background-color: black;
+  color: white;
+}
+
+.email-btn:hover i {
+  color: white;
+}
+
+.gmail-btn:hover {
+  background-color: #c23321;
+  color: white;
+}
+
+.gmail-btn:hover i {
+  color: white;
+}
+
+.facebook-btn {
+  background-color: transparent;
+  margin-top: 10px;
+}
+
+.facebook-btn:hover {
+  background-color: #87CEEB;
+  color: white;
+}
+
+.facebook-btn:hover i {
+  color: white;
+}
+
+.login-btn i {
+  margin-right: 30px;
+  font-size: 20px;
+  transition: color 0.3s;
+}
+
+a{
+  text-decoration: none;
+}
+
+
+.gmail-btn i {
+  color: #2e458b;
+}
+
+.facebook-btn i {
+  color: #2e458b;
+  margin-left: 18px;
+}
+
+@media (max-width: 768px) {
+  .login-btn {
+      font-size: 14px;
+      padding: 8px 16px;
+  }
+
+  .login-btn i {
+      margin-right: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-btn {
+      font-size: 12px;
+      padding: 6px 12px;
+  }
+
+  .login-btn i {
+      margin-right: 6px;
+  }
+}
