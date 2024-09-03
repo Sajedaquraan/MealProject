@@ -1,0 +1,461 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Recipes and nutritional information">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="~/assets/images/logo/icon-green.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="~/aboutus/vendor/bootstrap-icons/bootstrap-icons.css"></script>
+    <link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="~/aboutus/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/aboutus/vendor/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="~/aboutus/vendor/bootstrap-icons/bootstrap-icons.css"></script>
+    <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" type="text/css">
+    <link rel="stylesheet" href="~/MEALSUGGESTIONS/MEALSUGGESTIONS.css" type="text/css" />
+
+    <title>What's for Dinner?</title>
+</head>
+
+<body class="body-fixed">
+  
+
+    <main>
+        <!-- Main search bar -->
+        <section id="main-container">
+            <div class="container main-container">
+                <div class="row justify-content-center">
+                    <div class="col">
+                        <h1 class="main-container__heading">Recipe Treasure Hunt</h1>
+                        <p id="para">Uncover delicious recipes by name or let your ingredients lead the way.</p>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col">
+                        <form id="recipe-form">
+                            <div class="search-bar-wrapper">
+                                <input type="text" name="search-bar" id="recipe-form__search-bar" placeholder="Find a recipe">
+                                <i class="fas fa-search" id="recipe-form__search-icon"></i>
+                                <i class="fas fa-times-circle" id="recipe-form__clear-icon"></i>
+                            </div>
+                            <div class="col-12 recipe-form-checkbox__search-wrapper">
+                                <button type="button" id="search" aria-label="Search recipe" class="recipe-form-checkbox__search-button" tabindex="0">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div id="recipe-cards__main" class="row"></div>
+                <div class="row justify-content-center">
+                    <div class="col">
+                        <button id="show-more" class="btnn btn-primary" style="display: none;text-decoration: none;">Show More</button>
+                    </div>
+                </div>
+                <div id="main-container__error-handling"></div>
+            </div>
+        </section>
+
+        <div id="recipe-cards">
+            <div class="container recipe-cards">
+                <div class="row justify-content-between" id="recipe-cards__main"></div>
+            </div>
+        </div>
+
+        <div id="main-container__error-handling"></div>
+
+        <section id="inspiration-section">
+            <div class="block-divider-image"></div>
+            <div class="container inspiration-container">
+                <div class="inspiration-container__wrapper">
+                    <div class="inspiration-container__wrapper-title">
+                        <h2>Need some inspiration?</h2>
+                        <p>Stay healthy and strong. Check out the recipe ideas we catered only for you!</p>
+                    </div>
+                </div>
+                <!-- Immuno supportive recipes -->
+                <article id="immuno-supportive-recipes">
+                    <div class="inspiration-container__heading">
+                        <h3>quick & easy recipes</h3>
+                        <p>
+                            Maintaining a healthy heart involves various factors, and diet plays a crucial
+                            role! In times of heart health concerns, every little bit helps.
+                        </p>
+                    </div>
+                    <!-- Swiper design source https://themes.getbootstrap.com/preview/?theme_id=55961-->
+                    <div class="inspiration-container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="swiper-container">
+                                    <div class="swiper-wrapper">
+                                        <!-- Your Swiper slides here -->
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/MEALSUGGESTIONS/images/best-zucchini-slice-recipe-close-up-196308-1.jpg" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Australia's favourite zucchini slice</h5>
+                                                    <a href="https://www.taste.com.au/recipes/zucchini-slice/eb7eed59-5f53-4f6f-bfb5-9b7e3f81a702?r=quickeasy/biccuul7" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/MEALSUGGESTIONS/images/classic-shepherds-pie-recipe-199638-2.jpg" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Classic shepherd's pie</h5>
+                                                    <a href="https://www.taste.com.au/recipes/classic-shepherds-pie/709d4226-8df3-47ef-bbb5-be1a307c42c9?r=quickeasy/biccuul7" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/MEALSUGGESTIONS/images/impossible-quiche-24036-1.jpeg" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Impossible quiche recipe</h5>
+                                                    <a href="https://www.taste.com.au/recipes/impossible-quiche-2/8244d479-b108-4b9c-9727-25e7041d8fd2?r=quickeasy/biccuul7" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/MEALSUGGESTIONS/images/curried-sausages-cropped-hero-200107-1.jpg" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Curried sausages</h5>
+                                                    <a href="https://www.taste.com.au/recipes/curried-sausages-2/74f6bdac-9ca0-4a0a-b74d-7c29be47b0bd?r=quickeasy/biccuul7" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/MEALSUGGESTIONS/images/basic-chicken-and-vegetable-stirfry_1980x1320-117899-1.jpg" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Simple chicken and vegetable stir-fry recipe</h5>
+                                                    <a href="https://www.taste.com.au/recipes/basic-chicken-vegetable-stir-fry/014fd009-6e08-4296-b155-f0b22fdc857a?r=quickeasy/biccuul7" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/MEALSUGGESTIONS/images/san-choy-bau_1980x1320-118402-1.jpg" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Roasted Trout with Arugula Salad</h5>
+                                                    <a href="https://www.taste.com.au/recipes/san-choy-bau-3/fd128c8b-f738-4d6f-be9f-6dddcc6479d8?r=quickeasy/biccuul7" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Repeat for other cards -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <div class="swiper-button-prev"><i class="fas fa-long-arrow-alt-left"></i></div>
+                        <div class="swiper-button-next"><i class="fas fa-long-arrow-alt-right"></i></div>
+                    </div>
+
+                </article>
+
+                <article id="balanced-recipes">
+                    <div class="inspiration-container__heading">
+                        <h3>Immunity-Enhancing recipes</h3>
+                        <p>
+                            Our brain-healthy recipes are designed to support cognitive function with nutrients that boost memory and focus.
+                        </p>
+                    </div>
+
+                    <div class="inspiration-container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="swiper-container">
+                                    <div class="swiper-wrapper">
+                                        <!-- Your Swiper slides here -->
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/MEALSUGGESTIONS/images/whiting-with-sprout-salad-and-cauliflower-puree-34816-1.jpg" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Whiting with sprout salad and cauliflower puree</h5>
+                                                    <a href="https://www.delicious.com.au/recipes/whiting-sprout-salad-cauliflower-puree/2bab82ab-3f3a-426f-a1c9-c9afa30df89d?r=recipes/collections/8a801jim" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/MEALSUGGESTIONS/images/salmon-durby-curry-34028-3.jpg" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Sumac salmon with roast fennel and herb dressing</h5>
+                                                    <a href="https://www.delicious.com.au/recipes/salmon-durban-curry/66ee3a52-607e-47bc-ba79-a2b40e21cfed?r=recipes/collections/8a801jim" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/MEALSUGGESTIONS/images/sumac-salmon-with-roast-fennel-and-herb-dressing-33237-2.jpg" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Salmon durban curry</h5>
+                                                    <a href="https://www.delicious.com.au/recipes/sumac-salmon-roast-fennel-herb-dressing/01bef1d4-c8ae-44a6-ac4b-281a5383cb8a?r=recipes/collections/8a801jim" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/MEALSUGGESTIONS/images/grilled-sardines-on-toast-with-salmoriglio-27393-1.jpg" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Matt Moran's grilled sardines on toast                                      </h5>
+                                                    <a href="https://www.delicious.com.au/recipes/matt-morans-grilled-sardines-toast-salmoriglio/0652c1d9-8bd7-4917-bf3e-98dcbac51783?r=recipes/collections/8a801jim" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/MEALSUGGESTIONS/images/fig-and-freekeh-salad-13896-1.jpg" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Fig and freekeh salad</h5>
+                                                    <a href="https://www.delicious.com.au/recipes/fig-freekeh-salad/b2406262-e1a1-4a86-b49c-39749fd9eaae?current_section=recipes&r=recipes/collections/8a801jim" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/MEALSUGGESTIONS/images/fried-brussels-sprouts-with-lemon-mint-and-buttermilk-23190-2.jpg" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Fried Brussels sprouts with lemon, mint and buttermilk</h5>
+                                                    <a href="https://www.delicious.com.au/recipes/fried-brussels-sprouts-lemon-mint-buttermilk/4074b579-b07c-4be0-b952-2c5347b5cbbc?r=recipes/collections/8a801jim" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Repeat for other cards -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <div class="swiper-button-prev"><i class="fas fa-long-arrow-alt-left"></i></div>
+                        <div class="swiper-button-next"><i class="fas fa-long-arrow-alt-right"></i></div>
+
+                </article>
+
+                <article id="veggie-recipes">
+                    <div class="inspiration-container__heading">
+                        <h3>Energy-Enhancing Foods</h3>
+                        <p>With our weight loss recipes, you'll receive detailed nutrition information to help you make informed choices and achieve your weight loss goals.</p>
+                        <!-- Source: https://www.pcrm.org/news/blog/foods-boost-immune-system -->
+                    </div>
+
+                    <div class="inspiration-container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="swiper-container">
+                                    <div class="swiper-wrapper">
+                                        <!-- Your Swiper slides here -->
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/MEALSUGGESTIONS/images/char-siu-beef-with-broccolini-64348-1.jpeg" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Char siu beef with broccolini</h5>
+                                                    <a href="https://www.taste.com.au/recipes/char-siu-beef-broccolini/2300f5bc-ce4d-4aab-89a0-f6b0728a11ab?r=recipes/gjv2n613" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/MEALSUGGESTIONS/images/stir-fried-rice-noodles-and-beef-with-nuoc-cham-marinated-mango-140829-2.jpg" class="card-img-top" alt="Recipe Image">
+                                                    <h5>AStir-fried rice noodles and beef with nuoc cham marinated mango</h5>
+                                                    <a href="https://www.taste.com.au/recipes/stir-fried-rice-noodles-beef-nuoc-cham-marinated-mango/725242bb-2ee8-46fb-a043-cbff6aa3dff7?r=recipes/gjv2n613" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/MEALSUGGESTIONS/images/spring-vegetables-with-pepper-crusted-lamb-90770-1.jpeg" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Spring vegetables with pepper-crusted lamb</h5>
+                                                    <a href="https://www.taste.com.au/recipes/spring-vegetables-pepper-crusted-lamb/6bc9293a-0f88-4752-b086-8f2d985194e9?r=recipes/gjv2n613" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/MEALSUGGESTIONS/images/beef-asparagus-salad-with-soft-boiled-egg-87530-1.jpeg" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Beef & asparagus salad with soft-boiled egg</h5>
+                                                    <a href="https://www.taste.com.au/recipes/beef-asparagus-salad-soft-boiled-egg/51605d58-1e14-4f08-a69b-8f223522f6f5?r=recipes/gjv2n613" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/MEALSUGGESTIONS/images/tandoori-lamb-cutlets-with-cucumber-salad-taste-152065-2.jpg" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Tandoori lamb cutlets with cucumber salad</h5>
+                                                    <a href="https://www.taste.com.au/recipes/tandoori-lamb-cutlets-cucumber-salad-recipe/gd78467h?r=recipes/gjv2n613" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/MEALSUGGESTIONS/images/barbecued-chilli-beef-noodle-salad-with-zingy-dressing-101589-1.jpeg" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Barbecued chilli beef noodle salad with zingy dressing</h5>
+                                                    <a href="https://www.taste.com.au/recipes/barbecued-chilli-beef-noodle-salad-zingy-dressing/3761e52c-001b-4284-9a40-7ac76770cd8c?r=recipes/gjv2n613" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Repeat for other cards -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <div class="swiper-button-prev"><i class="fas fa-long-arrow-alt-left"></i></div>
+                        <div class="swiper-button-next"><i class="fas fa-long-arrow-alt-right"></i></div>
+                    </div>
+
+
+                </article>
+
+            </div>
+        </section>
+
+
+        <!-- Arrow scroll to top source https://www.tavi.pt/, with adaptations-->
+
+    </main>
+
+
+    <footer id="footer" class="footer">
+
+        <div class="footer-top">
+            <div class="container">
+                <div class="row gy-4">
+                    <div class="col-lg-5 col-md-12 footer-info">
+                        <a href="@Url.Action("Index")" class="logo d-flex align-items-center">
+                            <img src="~/aboutus/logo.png" alt="">
+                            <span></span>
+                        </a>
+                        <p style="font-weight: 100;">
+                            We offer modern solutions for growing your business.
+                            We are team of talented designers making websites.
+                            With over four decades of experience in managing the systems and workings of
+                            global enterprises, we expertly steer our clients through their digital journey.
+                            Our always-on learning agenda drives their continuous improvement through building and
+                            transferring digital skills, expertise, and ideas from our innovation ecosystem.
+                        </p>
+                        <div class="social-links mt-3">
+                            <a href="https://www.twitter.com" target="_blank" class="twitter"><i class="bi bi-twitter"></i></a>
+                            <a href="https://facebook.com" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
+                            <a href="https://instagram.com" target="_blank" class="instagram"><i class="bi bi-instagram bx bxl-instagram"></i></a>
+                            <a href="https://linkedin.com" target="_blank" class="linkedin"><i class="bi bi-linkedin bx bxl-linkedin"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-6 footer-links">
+                        <h4>Useful Links</h4>
+                        <ul>
+                            <li><i class="bi bi-chevron-right"></i> <a class="navy" href="@Url.Action("Index")">Home</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a class="navy" href="@Url.Action("aboutus")">About us</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="./services.html">Services</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="./faq.html">FAQ's</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="./faq.html">Terms of service</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="./faq.html">Privacy policy</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-2 col-6 footer-links">
+                        <h4>Our Services</h4>
+                        <ul>
+                            <li><i class="bi bi-chevron-right"></i> <a href="./services.html">Desktop Solutions</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="./services.html">Website/Hybrid App</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="./services.html">UI/ UX Design</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="./services.html">Mobile Solution</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="./services.html">Software Design</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="./services.html">Hire Developers</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+                        <h4>Contact Us</h4>
+                        <p>
+                            #23, VHBCS LAyout <br>
+                            Bangalore, 560045<br>
+                            India <br><br>
+                            <strong>Phone:</strong> +91 1234567890<br>
+                            <strong>Email:</strong> info@example.com<br>
+                        </p>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div style="font-size:1.5rem;" class="copyright">
+                &copy; Copyright <strong><span style="font-size:1.5rem;"></span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+
+                Designed by <a href="" target="_blank">badran</a>
+            </div>
+            <button class="scrolltop"><i class="uil uil-angle-up"></i></button>
+
+        </div>
+    </footer><!-- End Footer -->
+
+
+
+
+    <script src="~/NEUTRTION/JS/onload.js"></script>
+    <script src="~/MEALSUGGESTIONS/index.js"></script>
+    <script src="~/aboutus/aboutus.js"></script>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="~/NEUTRTION/JS/swiper.js"></script>
+    <!-- /JS Scripts -->
+    <script async src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- JS Bootstrap links -->
+    <script async src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script async src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+    <!-- /JS Bootstrap links -->
+
+
+    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
+
+
+
+
+</body>
+
+</html>

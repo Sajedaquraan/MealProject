@@ -1,0 +1,109 @@
+$flaticon-font: "flaticon";
+
+@font-face {
+    font-family: $flaticon-font;
+    src: url("./flaticon.ttf?f0c9a8f790ca36176d7a21ad1360ec6a") format("truetype"),
+url("./flaticon.woff?f0c9a8f790ca36176d7a21ad1360ec6a") format("woff"),
+url("./flaticon.woff2?f0c9a8f790ca36176d7a21ad1360ec6a") format("woff2"),
+url("./flaticon.eot?f0c9a8f790ca36176d7a21ad1360ec6a#iefix") format("embedded-opentype"),
+url("./flaticon.svg?f0c9a8f790ca36176d7a21ad1360ec6a#flaticon") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+$flaticon-map: (
+    "factory": "\f101",
+    "worker": "\f102",
+    "conveyor": "\f103",
+    "building": "\f104",
+    "tools": "\f105",
+    "natural-gas": "\f106",
+    "crane": "\f107",
+    "forklift": "\f108",
+    "digger": "\f109",
+    "factory-1": "\f10a",
+    "worker-1": "\f10b",
+    "manufacture": "\f10c",
+    "manufacture-1": "\f10d",
+    "play-button": "\f10e",
+    "down-arrow": "\f10f",
+    "up-arrow-angle": "\f110",
+    "gear": "\f111",
+    "settings": "\f112",
+    "quotation-marks": "\f113",
+    "gear-1": "\f114",
+    "settings-1": "\f115",
+);
+
+.flaticon-factory:before {
+    content: map-get($flaticon-map, "factory");
+}
+.flaticon-worker:before {
+    content: map-get($flaticon-map, "worker");
+}
+.flaticon-conveyor:before {
+    content: map-get($flaticon-map, "conveyor");
+}
+.flaticon-building:before {
+    content: map-get($flaticon-map, "building");
+}
+.flaticon-tools:before {
+    content: map-get($flaticon-map, "tools");
+}
+.flaticon-natural-gas:before {
+    content: map-get($flaticon-map, "natural-gas");
+}
+.flaticon-crane:before {
+    content: map-get($flaticon-map, "crane");
+}
+.flaticon-forklift:before {
+    content: map-get($flaticon-map, "forklift");
+}
+.flaticon-digger:before {
+    content: map-get($flaticon-map, "digger");
+}
+.flaticon-factory-1:before {
+    content: map-get($flaticon-map, "factory-1");
+}
+.flaticon-worker-1:before {
+    content: map-get($flaticon-map, "worker-1");
+}
+.flaticon-manufacture:before {
+    content: map-get($flaticon-map, "manufacture");
+}
+.flaticon-manufacture-1:before {
+    content: map-get($flaticon-map, "manufacture-1");
+}
+.flaticon-play-button:before {
+    content: map-get($flaticon-map, "play-button");
+}
+.flaticon-down-arrow:before {
+    content: map-get($flaticon-map, "down-arrow");
+}
+.flaticon-up-arrow-angle:before {
+    content: map-get($flaticon-map, "up-arrow-angle");
+}
+.flaticon-gear:before {
+    content: map-get($flaticon-map, "gear");
+}
+.flaticon-settings:before {
+    content: map-get($flaticon-map, "settings");
+}
+.flaticon-quotation-marks:before {
+    content: map-get($flaticon-map, "quotation-marks");
+}
+.flaticon-gear-1:before {
+    content: map-get($flaticon-map, "gear-1");
+}
+.flaticon-settings-1:before {
+    content: map-get($flaticon-map, "settings-1");
+}

@@ -1,0 +1,663 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Recipes and nutritional information">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="~/assets/images/logo/icon-green.png">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+    <script src="~/aboutus/vendor/bootstrap-icons/bootstrap-icons.css"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" type="text/css">
+    <link rel="stylesheet" href="~/NEUTRTION/NEUTRTION.css" type="text/css" />
+    <title>What's for Dinner?</title>
+</head>
+<body>
+  
+    <main>
+        <!-- Main search bar -->
+        <section id="main-container">
+            <div class="container main-container">
+                <div class="row justify-content-center">
+                    <div class="col">
+                        <h1 class="main-container__heading">Healthy Living Starts Here</h1>
+                        <p id="para">Your comprehensive guide to balanced nutrition and wellness.</p>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col">
+                        <form id="recipe-form">
+                            <div class="search-bar-wrapper">
+
+                                <i class="fas fa-times-circle" id="recipe-form__clear-icon"></i>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+                <div id="main-container__error-handling"></div>
+            </div>
+        </section>
+        <!-- /Main search bar -->
+        <!-- Recipe Cards -->
+        <div id="recipe-cards">
+            <div class="container recipe-cards">
+                <div class="row justify-content-between" id="recipe-cards__main"></div>
+            </div>
+        </div>
+        <!-- /Recipe Cards -->
+        <!-- JS error container-->
+        <div id="main-container__error-handling"></div>
+        <!-- /JS error container-->
+        <!-- Inspiration section -->
+        <!-- /Inspiration section-->
+        <!-- Nutritional information -->
+        <section id="nutritional-info">
+            <div class="container nutrition-container">
+
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="titly">It's quick and easy!</h3>
+                        <!-- Check icons svg design from https://themes.getbootstrap.com/preview/?theme_id=55961 -->
+                        <div class="d-flex nutrition-container__check">
+                            <div class="d-flex align-items-start ">
+                                <svg class="fill" width="16" height="16"
+                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <title>check</title>
+                                    <path d="M23.146,5.4,20.354,2.6a.5.5,0,0,0-.708,0L7.854,14.4a.5.5,0,0,1-.708,0L4.354,11.6a.5.5,0,0,0-.708,0L.854,14.4a.5.5,0,0,0,0,.707L7.146,21.4a.5.5,0,0,0,.708,0L23.146,6.1A.5.5,0,0,0,23.146,5.4Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p>Enter each ingredient on a new line</p>
+                            </div>
+                        </div>
+                        <div class="d-flex nutrition-container__check">
+                            <div class="d-flex align-items-start ">
+                                <svg class="fill" width="16" height="16"
+                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <title>check</title>
+                                    <path d="M23.146,5.4,20.354,2.6a.5.5,0,0,0-.708,0L7.854,14.4a.5.5,0,0,1-.708,0L4.354,11.6a.5.5,0,0,0-.708,0L.854,14.4a.5.5,0,0,0,0,.707L7.146,21.4a.5.5,0,0,0,.708,0L23.146,6.1A.5.5,0,0,0,23.146,5.4Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p>Must contain unit, measure and the ingredient</p>
+                            </div>
+                        </div>
+                        <div class="d-flex nutrition-container__check">
+                            <div class="d-flex align-items-start ">
+                                <svg class="fill" width="16" height="16"
+                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <title>check</title>
+                                    <path d="M23.146,5.4,20.354,2.6a.5.5,0,0,0-.708,0L7.854,14.4a.5.5,0,0,1-.708,0L4.354,11.6a.5.5,0,0,0-.708,0L.854,14.4a.5.5,0,0,0,0,.707L7.146,21.4a.5.5,0,0,0,.708,0L23.146,6.1A.5.5,0,0,0,23.146,5.4Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p>Use comma to separate the ingredients</p>
+                            </div>
+                        </div>
+                        <form>
+                            <div class="form-group nutrition-container__form">
+                                <label for="nutrition-container__label"></label>
+                                <textarea class="form-control" id="nutrition-container__label" rows="6">1 cup of rice, 
+10 oz chickpeas</textarea>
+                                <div class="col-12 nutrition-container__search-button">
+                                    <button type="button" id="nutrition-container__search-button"
+                                            aria-label="Search nutritional information">
+                                        Search
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="container" id="nutrition-container__tables">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="nutrition-container__heading-tables">
+                            <img src="~/NEUTRTION/images/icons/icons8-flour-of-rye-50.png" alt="Four of Rye icon"
+                                 aria-hidden="true">
+                            <h4>Nutrional value per ingredient</h4>
+                            <p>
+                                This section shows a summary of the nutritional information for the ingredients
+                                entered separately
+                            </p>
+                        </div>
+                        <div class="nutrition-container__ingredient-table" id="nutrition-container__ingredient-table">
+                        </div>
+                        <!-- JS error container-->
+                        <div class="col-12" id="ingredient-table__error-handling"></div>
+                    </div>
+                    <div class="col-12">
+                        <div class="nutrition-container__heading-tables">
+                            <img src="~/NEUTRTION/images/icons/icons8-omlette.png" alt="Omelette plate icon"
+                                 aria-hidden="true">
+                            <h4>Nutrional value for the dish</h4>
+                            <p>This section shows nutrional value for all the ingredients of the recipe</p>
+                        </div>
+                        <div id="nutrition-container__nutrition-table"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- JS error container-->
+            <div id="nutrition-container__error-handling"></div>
+        </section>
+
+        <section id="inspiration-section">
+            <div class="block-divider-image"></div>
+            <div class="container inspiration-container">
+                <div class="inspiration-container__wrapper">
+                    <div class="inspiration-container__wrapper-title">
+                        <h2>Want to eat smarter?</h2>
+                        <p>Fuel your body right. Explore the detailed nutritional information tailored just for you!</p>
+                    </div>
+                </div>
+                <!-- Immuno supportive recipes -->
+                <article id="immuno-supportive-recipes">
+                    <div class="inspiration-container__heading">
+                        <h3>Heart-Healthy Meals</h3>
+                        <p>
+                            Maintaining a healthy heart involves various factors, and diet plays a crucial
+                            role! In times of heart health concerns, every little bit helps.
+                        </p>
+                    </div>
+                    <!-- Swiper design source https://themes.getbootstrap.com/preview/?theme_id=55961-->
+                    <div class="inspiration-container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="swiper-container">
+                                    <div class="swiper-wrapper">
+                                        <!-- Your Swiper slides here -->
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/NEUTRTION/images/1684262865201.jpeg" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Calabacitas a la Mexicana</h5>
+                                                    <a href="https://www.foodnetwork.com/recipes/food-network-kitchen/calabacitas-a-la-mexicana-14181961" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/NEUTRTION/images/1614271995237.jpeg" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Shortcut Chana Masala</h5>
+                                                    <a href="https://www.foodnetwork.com/recipes/food-network-kitchen/shortcut-chana-masala-9619098" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/NEUTRTION/images/1616083131975.jpeg" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Salmon Kushiyaki</h5>
+                                                    <a href="https://www.foodnetwork.com/recipes/food-network-kitchen/salmon-kushiyaki-9876806" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/NEUTRTION/images/1492113444772.jpeg" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Microwave Apple Cinnamon Oatmeal                                        </h5>
+                                                    <a href="https://www.foodnetwork.com/recipes/food-network-kitchen/microwave-apple-cinnamon-oatmeal-recipe-1928134" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/NEUTRTION/images/1694545952455.jpeg" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Rajma Masala</h5>
+                                                    <a href="https://www.foodnetwork.com/recipes/food-network-kitchen/rajma-masala-17170466" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/NEUTRTION/images/1441136464122.jpeg" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Roasted Trout with Arugula Salad</h5>
+                                                    <a href="https://www.foodnetwork.com/recipes/food-network-kitchen/roasted-trout-with-arugula-salad-3363930" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Repeat for other cards -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <div class="swiper-button-prev"><i class="fas fa-long-arrow-alt-left"></i></div>
+                        <div class="swiper-button-next"><i class="fas fa-long-arrow-alt-right"></i></div>
+                    </div>
+
+                </article>
+
+                <article id="balanced-recipes">
+                    <div class="inspiration-container__heading">
+                        <h3>Brain-Healthy Meals</h3>
+                        <p>
+                            Our brain-healthy recipes are designed to support cognitive function with nutrients that boost memory and focus.
+                        </p>
+                    </div>
+
+                    <div class="inspiration-container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="swiper-container">
+                                    <div class="swiper-wrapper">
+                                        <!-- Your Swiper slides here -->
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/NEUTRTION/images/sheet-pan-salmon-faa6b0f412954f4f853fde2a9e213fad.png" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Sheet-Pan Salmon with Sweet Potatoes & Broccoli</h5>
+                                                    <a href="https://www.eatingwell.com/recipe/281181/sheet-pan-salmon-with-sweet-potatoes-broccoli/" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/NEUTRTION/images/chick-enchilada-skillet-cass-2000-ae410d9203444f9d8d34af28e1b44493.png" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Chicken Enchilada Skillet Casserole</h5>
+                                                    <a href="https://www.eatingwell.com/recipe/7885252/chicken-enchilada-skillet-casserole/" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/NEUTRTION/images/beet-mandarin-and-farro-salad-380d6bceeebb4cb2bd93cb427932e111.png" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Beet, Mandarin & Farro Salad </h5>
+                                                    <a href="https://www.eatingwell.com/recipe/7920595/beet-mandarin-farro-salad/" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/NEUTRTION/images/25-minute-sweet-potato-cheese-enchiladas-8589812d06624b2a93a537a6826caf4c.png" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Sweet Potato & Bean Enchiladas                                       </h5>
+                                                    <a href="https://www.eatingwell.com/recipe/7905753/25-minute-sweet-potato-bean-enchiladas/" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/NEUTRTION/images/creamy-salmon-pasta-with-sun-dried-tomatoes-3990cbe0d1d145eebfc4e845ce0d4bc7.png" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Creamy Salmon Pasta with Sun-Dried Tomatoes</h5>
+                                                    <a href="https://www.eatingwell.com/recipe/7919069/creamy-salmon-pasta-with-sun-dried-tomatoes/" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/NEUTRTION/images/vegetarian-chopped-power-salad-with-creamy-cilantro-dressing-72b21c0e2e764cccb6e0780090725843.png" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Vegetarian Chopped Power Salad with Creamy Cilantro Dressing</h5>
+                                                    <a href="https://www.eatingwell.com/recipe/7917821/vegetarian-chopped-power-salad-with-creamy-cilantro-dressing/" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Repeat for other cards -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <div class="swiper-button-prev"><i class="fas fa-long-arrow-alt-left"></i></div>
+                        <div class="swiper-button-next"><i class="fas fa-long-arrow-alt-right"></i></div>
+
+                </article>
+
+                <article id="veggie-recipes">
+                    <div class="inspiration-container__heading">
+                        <h3>weight-loss-recipes</h3>
+                        <p>With our weight loss recipes, you'll receive detailed nutrition information to help you make informed choices and achieve your weight loss goals.</p>
+                        <!-- Source: https://www.pcrm.org/news/blog/foods-boost-immune-system -->
+                    </div>
+
+                    <div class="inspiration-container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="swiper-container">
+                                    <div class="swiper-wrapper">
+                                        <!-- Your Swiper slides here -->
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/NEUTRTION/images/6211920-e325b44a84a64d53ac2126322033c833.png" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Weight-Loss Cabbage Soup</h5>
+                                                    <a href="https://www.eatingwell.com/recipe/269488/cabbage-diet-soup/" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/NEUTRTION/images/4526598-b0c67e8b742545c3a1fbf53f2a56bc07.png" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Artichoke & Egg Tartine</h5>
+                                                    <a href="https://www.eatingwell.com/recipe/258519/artichoke-egg-tartine/" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/NEUTRTION/images/4293524-7f95a225db594a2cb34c45ae5ccd3562.png" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Ancho Chicken Breast with Black Beans, Bell Peppers & Scallions</h5>
+                                                    <a href="https://www.eatingwell.com/recipe/256508/ancho-chicken-breast-with-black-beans-bell-peppers-scallions/" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/NEUTRTION/images/7221547-7a5ec4ec3b4345a2869f2ba49bab6ddf.png" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Chicken Parmesan & Quinoa Stuffed Peppers</h5>
+                                                    <a href="https://www.eatingwell.com/recipe/276816/chicken-parmesan-quinoa-stuffed-peppers/" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/NEUTRTION/images/7493339-f79af7e9dc1940af99794c3f39783a2e.png" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Edamame Lettuce Wrap Burgers with Peanut Sauce</h5>
+                                                    <a href="https://www.eatingwell.com/recipe/277822/edamame-lettuce-wrap-burgers-with-peanut-sauce/" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/NEUTRTION/images/5691842-b2f4cd6fc27e4b1680502be7f3ce2f57.png" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Quick Shrimp Puttanesca</h5>
+                                                    <a href="https://www.eatingwell.com/recipe/267851/quick-shrimp-puttanesca/" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Repeat for other cards -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <div class="swiper-button-prev"><i class="fas fa-long-arrow-alt-left"></i></div>
+                        <div class="swiper-button-next"><i class="fas fa-long-arrow-alt-right"></i></div>
+                    </div>
+
+
+                </article>
+                <!-- /Veggie friendly recipes -->
+            </div>
+        </section>
+
+
+        <!-- /Nutritional information -->
+        <!-- Arrow scroll to top source https://www.tavi.pt/, with adaptations-->
+        <!-- /Arrow scroll to top -->
+    </main>
+    <!-- Footer -->
+    <footer id="footer" class="footer">
+
+        <div class="footer-top">
+            <div class="container">
+                <div class="row gy-4">
+                    <div class="col-lg-5 col-md-12 footer-info">
+                        <a href="@Url.Action("Index")" class="logo d-flex align-items-center">
+                            <img src="~/aboutus/logo.png" alt="">
+                            <span></span>
+                        </a>
+                        <p style="font-weight: 100;">
+                            We offer modern solutions for growing your business.
+                            We are team of talented designers making websites.
+                            With over four decades of experience in managing the systems and workings of
+                            global enterprises, we expertly steer our clients through their digital journey.
+                            Our always-on learning agenda drives their continuous improvement through building and
+                            transferring digital skills, expertise, and ideas from our innovation ecosystem.
+                        </p>
+                        <div class="social-links mt-3">
+                            <a href="https://www.twitter.com" target="_blank" class="twitter"><i class="bi bi-twitter"></i></a>
+                            <a href="https://facebook.com" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
+                            <a href="https://instagram.com" target="_blank" class="instagram"><i class="bi bi-instagram bx bxl-instagram"></i></a>
+                            <a href="https://linkedin.com" target="_blank" class="linkedin"><i class="bi bi-linkedin bx bxl-linkedin"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-6 footer-links">
+                        <h4>Useful Links</h4>
+                        <ul>
+                            <li><i class="bi bi-chevron-right"></i> <a class="navy" href="@Url.Action("Index")">Home</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a class="navy" href="@Url.Action("aboutus")">About us</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="./services.html">Services</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="./faq.html">FAQ's</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="./faq.html">Terms of service</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="./faq.html">Privacy policy</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-2 col-6 footer-links">
+                        <h4>Our Services</h4>
+                        <ul>
+                            <li><i class="bi bi-chevron-right"></i> <a href="./services.html">Desktop Solutions</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="./services.html">Website/Hybrid App</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="./services.html">UI/ UX Design</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="./services.html">Mobile Solution</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="./services.html">Software Design</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="./services.html">Hire Developers</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+                        <h4>Contact Us</h4>
+                        <p>
+                            #23, VHBCS LAyout <br>
+                            Bangalore, 560045<br>
+                            India <br><br>
+                            <strong>Phone:</strong> +91 1234567890<br>
+                            <strong>Email:</strong> info@example.com<br>
+                        </p>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div style="font-size:1.5rem;" class="copyright">
+                &copy; Copyright <strong><span style="font-size:1.5rem;"></span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+
+                Designed by <a href="" target="_blank">badran</a>
+            </div>
+
+        </div>
+    </footer><!-- End Footer -->
+    <!-- /Footer -->
+    <!-- JS Scripts -->
+    <script src="~/NEUTRTION/JS/nuetrtion.js"></script>
+    <script src="~/aboutus/aboutus.js"></script>
+    <script src="~/NEUTRTION/JS/onload.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="~/NEUTRTION/JS/swiper.js"></script>
+    <!-- /JS Scripts -->
+    <script async src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- JS Bootstrap links -->
+    <script async src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script async src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+
+
+    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
+
+
+
+
+
+
+
+
+    <script>
+        // Function to get URL parameters
+        function getQueryParams() {
+            const params = {};
+            const queryString = window.location.search.substring(1);
+            const pairs = queryString.split("&");
+            for (let i = 0; i < pairs.length; i++) {
+                const pair = pairs[i].split("=");
+                params[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+            }
+            return params;
+        }
+
+        // Get the ingredients from URL parameters and display in the textarea
+        window.onload = function() {
+            const params = getQueryParams();
+            if (params.ingredients) {
+                const ingredientsTextarea = document.getElementById("nutrition-container__label");
+                ingredientsTextarea.value = params.ingredients;
+            }
+            // Trigger the search button click
+            document.getElementById("nutrition-container__search-button").click();
+        };
+    </script>
+
+
+
+
+
+
+
+
+
+
+    <script>
+         ScrollReveal().reveal('.nutrition-container__check', {
+          origin: 'left',
+          distance: '100px',
+          duration: 1000,
+          delay: 200,
+          opacity: 0,
+          easing: 'ease-in-out',
+
+          viewFactor: 0.5,
+          interval: 200
+        });
+
+        ScrollReveal().reveal('.titly', {
+          origin: 'left',
+          distance: '100px',
+          duration: 1000,
+          delay: 200,
+          opacity: 0,
+          easing: 'ease-in-out',
+
+          viewFactor: 0.5,
+          interval: 200
+        });
+
+
+
+        ScrollReveal().reveal('.form-group', {
+          origin: 'right',
+          distance: '100px',
+          duration: 1000,
+          delay: 200,
+          opacity: 0,
+          easing: 'ease-in-out',
+
+          viewFactor: 0.5,
+          interval: 200
+        });
+
+        ScrollReveal().reveal('.search-bar-wrapper', {
+          origin: 'right',
+          distance: '100px',
+          duration: 1000,
+          delay: 200,
+          opacity: 0,
+          easing: 'ease-in-out',
+
+          viewFactor: 0.5,
+          interval: 200
+        });
+    </script>
+
+
+    <script>
+        ScrollReveal().reveal('#heading', {
+          origin: 'left',
+          distance: '100px',
+          duration: 1000,
+          delay: 200,
+          opacity: 0,
+          easing: 'ease-in-out',
+
+          viewFactor: 0.5,
+          interval: 200
+        });
+
+        ScrollReveal().reveal('#paragraph', {
+          origin: 'right',
+          distance: '100px',
+          duration: 1000,
+          delay: 200,
+          opacity: 0,
+          easing: 'ease-in-out',
+
+          viewFactor: 0.5,
+          interval: 200
+        });
+
+        ScrollReveal().reveal('.search-bar-wrapper', {
+          origin: 'right',
+          distance: '100px',
+          duration: 1000,
+          delay: 200,
+          opacity: 0,
+          easing: 'ease-in-out',
+
+          viewFactor: 0.5,
+          interval: 200
+        });
+    </script>
+    <!-- /JS Bootstrap links -->
+</body>
+
+</html>

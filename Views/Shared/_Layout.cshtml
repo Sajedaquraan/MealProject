@@ -1,49 +1,81 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MealProject</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/MealProject.styles.css" asp-append-version="true" />
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MealProject</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+﻿
+<header id="header" class="header fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+        <a href="@Url.Action("Index")" class="logo d-flex align-items-center">
+            <img src="~/Home/images/logo.svg" alt="">
+            <span></span>
+        </a>
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                <li class="dropdown">
+                    <a href="#">Services<i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="@Url.Action("NEUTRTION","Home")">NEUTRTION info</a></li>
+                        <li><hr></li>
+                        <li><a href="@Url.Action("MEALSUGGESTIONS")">Recipes SUGGESTIONS</a></li>
+                        <li><hr></li>
+                        <li><a href="@Url.Action("filter")">Recipes Filter</a></li>
                     </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Health Calculator<i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="@Url.Action("BMI")">BMI</a></li>
+                        <li><hr></li>
+                        <li><a href="@Url.Action("BMR")">BMR</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Questions  <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="https://letsfoodie.com/category/how-tos/cook/" target="_blank">Cook</a></li>
+                        <li><hr></li>
+                        <li><a href="https://letsfoodie.com/category/faqs/comparisons/">Comparisons</a></li>
+                        <li><hr></li>
+                        <li><a href="https://letsfoodie.com/category/how-tos/microwave/">Microwave</a></li>
+                        <li><hr></li>
+                        <li><a href="https://letsfoodie.com/category/faqs/cooking/">Cooking</a></li>
+                        <li><hr></li>
+                        <li><a href="https://letsfoodie.com/category/how-tos/freeze/">Freeze</a></li>
+                        <li><hr></li>
+                        <li><a href="https://letsfoodie.com/category/how-tos/reheat/">Reheat</a></li>
+                    </ul>
+                </li>
+                <li><a href="@Url.Action("aboutus")">ABOUT</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+
+        <div class="header-right">
+
+            <a href="@Url.Action("profile")" class="header-btn">
+                <i class="uil uil-user-md"></i>
+            </a>
+        </div>
+
+
+    </div>
+</header><!-- End Header -->
+
+
+
+
+
+
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - MealProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+
+
+
+
+
+
     @await RenderSectionAsync("Scripts", required: false)
-</body>
-</html>
+

@@ -18,6 +18,38 @@ namespace MealProject.Controllers
             return View();
         }
 
+        public IActionResult aboutus()
+        {
+            return View();
+        }
+        public IActionResult addrecipe()
+        {
+            return View();
+        }
+        public IActionResult BMI()
+        {
+            return View();
+        }
+        public IActionResult BMR()
+        {
+            return View();
+        }
+        public IActionResult filter()
+        {
+            return View();
+        }
+        public IActionResult MEALSUGGESTIONS()
+        {
+            return View();
+        }
+        public IActionResult NEUTRTION()
+        {
+            return View();
+        }
+        public IActionResult profile()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();

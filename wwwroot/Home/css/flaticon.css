@@ -1,0 +1,83 @@
+@font-face {
+    font-family: "flaticon";
+    src: url("./flaticon.ttf?f0c9a8f790ca36176d7a21ad1360ec6a") format("truetype"),
+url("./flaticon.woff?f0c9a8f790ca36176d7a21ad1360ec6a") format("woff"),
+url("./flaticon.woff2?f0c9a8f790ca36176d7a21ad1360ec6a") format("woff2"),
+url("./flaticon.eot?f0c9a8f790ca36176d7a21ad1360ec6a#iefix") format("embedded-opentype"),
+url("./flaticon.svg?f0c9a8f790ca36176d7a21ad1360ec6a#flaticon") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.flaticon-factory:before {
+    content: "\f101";
+}
+.flaticon-worker:before {
+    content: "\f102";
+}
+.flaticon-conveyor:before {
+    content: "\f103";
+}
+.flaticon-building:before {
+    content: "\f104";
+}
+.flaticon-tools:before {
+    content: "\f105";
+}
+.flaticon-natural-gas:before {
+    content: "\f106";
+}
+.flaticon-crane:before {
+    content: "\f107";
+}
+.flaticon-forklift:before {
+    content: "\f108";
+}
+.flaticon-digger:before {
+    content: "\f109";
+}
+.flaticon-factory-1:before {
+    content: "\f10a";
+}
+.flaticon-worker-1:before {
+    content: "\f10b";
+}
+.flaticon-manufacture:before {
+    content: "\f10c";
+}
+.flaticon-manufacture-1:before {
+    content: "\f10d";
+}
+.flaticon-play-button:before {
+    content: "\f10e";
+}
+.flaticon-down-arrow:before {
+    content: "\f10f";
+}
+.flaticon-up-arrow-angle:before {
+    content: "\f110";
+}
+.flaticon-gear:before {
+    content: "\f111";
+}
+.flaticon-settings:before {
+    content: "\f112";
+}
+.flaticon-quotation-marks:before {
+    content: "\f113";
+}
+.flaticon-gear-1:before {
+    content: "\f114";
+}
+.flaticon-settings-1:before {
+    content: "\f115";
+}

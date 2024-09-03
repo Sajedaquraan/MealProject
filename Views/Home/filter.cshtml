@@ -1,0 +1,908 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Recipes and nutritional information">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="assets/images/logo/icon-green.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="~/aboutus/vendor/bootstrap-icons/bootstrap-icons.css"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" type="text/css">
+    <link rel="stylesheet" href="filter.css" type="text/css" />
+    <title>What's for Dinner?</title>
+</head>
+<body>
+
+
+
+   
+    <main>
+        <!-- Main search bar -->
+        <section id="main-container">
+            <div class="container main-container">
+                <div class="row justify-content-center">
+                    <div class="col">
+                        <div class="col">
+                            <h1 class="main-container__heading" id="heading">Find Your Perfect Meal:</h1>
+                            <p id="paragraph">
+                                Customize Your Culinary Experience with Our Advanced Meal Filters!
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="recipe-cards">
+            <div class="container recipe-cards">
+                <div class="row justify-content-between" id="recipe-cards__main"></div>
+            </div>
+        </div>
+
+        <div id="main-container__error-handling"></div>
+
+
+
+
+        <div id="container">
+            <div id="first-col">
+                <h2>Choose <b>one or more</b> methods</h2>
+                <div id="methods">
+
+                    <input type="radio" name="method" id="search-key-btn" class="check" checked="checked">
+                    <label for="search-key-btn">Searching by Keyword</label>
+
+                    <input type="radio" name="method" id="allergy-btn" class="check">
+                    <label for="allergy-btn">Allergies</label>
+
+                    <input type="radio" name="method" id="diet-btn" class="check">
+                    <label for="diet-btn">Diets</label>
+
+                    <input type="radio" name="method" id="cal-btn" class="check">
+                    <label for="cal-btn">Calories</label>
+
+                    <input type="radio" name="method" id="nut-btn" class="check">
+                    <label for="nut-btn">Nutrients</label>
+
+                    <input type="radio" name="method" id="rec-screen" class="check">
+
+                    <input type="radio" name="method" id="load-screen" class="check">
+                </div>
+            </div>
+
+            <div id="second-col">
+                <div id="search-key-col" class="screen">
+                    <h3>Enter ingredients that you have at home, like "lettuce and beef" or "cheese, spinach and bread", or the food item that you are looking for. We have tens of thousands of recipes, including international dishes.</h3>
+
+                    <h4>Ingredients</h4>
+                    <div id="search-div">
+                        <input type="text" id="search" placeholder="Enter the meal or ingredient you want to filter">
+                        <button type="button" id="submit" class="btn"><img src="~/filter/images/SearchIcon.png" id="search-img"></button>
+                    </div>
+                </div>
+
+                <div id="allergy-col" class="screen">
+                    <div>
+                        <input type="checkbox" name="health=crustacean-free" value="Crustacean-free" id="crus-free" class="check_box">
+                        <label for="crus-free">Crustacean-free</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="health=dairy-free" value="Dairy-free" id="dairy-free" class="check_box">
+                        <label for="dairy-free">Dairy-free</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="health=egg-free" value="Egg-free" id="egg-free" class="check_box">
+                        <label for="egg-free">Egg-free</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="health=fish-free" value="Fish-free" id="fish-free" class="check_box">
+                        <label for="fish-free">Fish-free</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="health=gluten-free" value="Gluten-free" id="gluten-free" class="check_box">
+                        <label for="gluten-free">Gluten-free</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="health=celery-free" value="Celery-free" id="celery-free" class="check_box">
+                        <label for="celery-free">Celery-free</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="health=lupine-free" value="Lupine-free" id="lupine-free" class="check_box">
+                        <label for="lupine-free">Lupine-free</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="health=mustard-free" value="Mustard-free" id="mustard-free" class="check_box">
+                        <label for="mustard-free">Mustard-free</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="health=peanut-free" value="Peanut-free" id="peanut-free" class="check_box">
+                        <label for="peanut-free">Peanut-free</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="health=sesame-free" value="Sesame-free" id="sesame-free" class="check_box">
+                        <label for="sesame-free">Sesame-free</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="health=shellfish-free" value="Shellfish-free" id="shellfish-free" class="check_box">
+                        <label for="shellfish-free">Shellfish-free</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="health=soy-free" value="Soy-free" id="soy-free" class="check_box">
+                        <label for="soy-free">Soy-free</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="health=tree-nut-free" value="Tree-Nut-free" id="tree-nut-free" class="check_box">
+                        <label for="tree-nut-free">Tree-Nut-free</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="health=wheat-free" value="Wheat-free" id="wheat-free" class="check_box">
+                        <label for="wheat-free">Wheat-free</label>
+                    </div>
+                </div>
+
+                <div id="diet-col" class="screen">
+                    <div>
+                        <input type="checkbox" name="health=alcohol-free" value="Alcohol" id="alcohol" class="check_box">
+                        <label for="alcohol">Alcohol</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="diet=balanced" value="Balanced" id="balanced" class="check_box">
+                        <label for="balanced">Balanced</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="diet=high-fiber" value="High Fiber" id="high-fiber" class="check_box">
+                        <label for="high-fiber">High Fiber</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="diet=high-protein" value="High Protein" id="high-protein" class="check_box">
+                        <label for="high-protein">High Protein</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="health=keto-friendly" value="Keto" id="keto" class="check_box">
+                        <label for="keto">Keto</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="health=kidney-friendly" value="Kidney Friendly" id="kidney-friendly" class="check_box">
+                        <label for="kidney-friendly">Kidney Friendly</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="health=kosher" value="Kosher" id="kosher" class="check_box">
+                        <label for="kosher">Kosher</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="diet=low-carb" value="Low Carb" id="low-carb" class="check_box">
+                        <label for="low-carb">Low Carb</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="diet=low-fat" value="Low Fat" id="low-fat" class="check_box">
+                        <label for="low-fat">Low Fat</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="health=low-potassium" value="Low Potassium" id="low-potassium" class="check_box">
+                        <label for="low-potassium">Low Potassium</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="diet=low-sodium" value="Low Sodium" id="low-sodium" class="check_box">
+                        <label for="low-sodium">Low Sodium</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="health=no-oil-added" value="No Oil Added" id="no-oil-added" class="check_box">
+                        <label for="no-oil-added">No Oil Added</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="health=low-sugar" value="No Sugar" id="no-sugar" class="check_box">
+                        <label for="no-sugar">No Sugar</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="health=paleo" value="Paleo" id="paleo" class="check_box">
+                        <label for="paleo">Paleo</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="health=pescatarian" value="Pescatarian" id="pescatarian" class="check_box">
+                        <label for="pescatarian">Pescatarian</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="health=pork-free" value="Pork Free" id="pork-free" class="check_box">
+                        <label for="pork-free">Pork Free</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="health=red-meat-free" value="Red Meat Free" id="red-meat-free" class="check_box">
+                        <label for="red-meat-free">Red Meat Free</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="health=sugar-conscious" value="Sugar Concious" id="sugar-concious" class="check_box">
+                        <label for="sugar-concious">Sugar Concious</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="health=vegan" value="Vegan" id="vegan" class="check_box">
+                        <label for="vegan">Vegan</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="health=vegetarian" value="Vegetarian" id="vegetarian" class="check_box">
+                        <label for="vegetarian">Vegetarian</label>
+                    </div>
+                </div>
+
+                <div id="cal-col" class="screen">
+                    <h3>Input maximum desired calories per serving. For food database results default serving is 100g.</h3>
+
+                    <input type="number" id="kcal-select">
+                    <label for="kcal-select" id="kcal-label">kcal</label>
+                    <input type="checkbox" class="check_box_cal" id="kcal-check-id">
+                </div>
+
+                <div id="nut-col" class="screen">
+                    <h1>Macronutrients</h1>
+                    <div>
+                        <input type="checkbox" name="nutrients%5BFAT%5D=50%2B" value="Fat" id="fat" class="check_box">
+                        <label for="fat">Fat</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="nutrients%5BFASAT%5D=50%2B" value="Saturated Fat" id="saturated" class="check_box">
+                        <label for="saturated">Saturated Fat</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="nutrients%5BFATRN%5D=4%2B" value="Trans Fat" id="trans" class="check_box">
+                        <label for="trans">Trans Fat</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="nutrients%5BFAMS%5D=50%2B" value="Monosaturated Fat" id="monosaturated" class="check_box">
+                        <label for="monosaturated">Monosaturated Fat</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="nutrients%5BFAPU%5D=4%2B" value="Polyunsaturated Fat" id="polyunsaturated" class="check_box">
+                        <label for="polyunsaturated">Polyunsaturated Fat</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="nutrients%5BCHOCDF%5D=50%2B" value="Carbs" id="carbs" class="check_box">
+                        <label for="carbs">Carbs</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="nutrients%5BFIBTG%5D=20%2B" value="Fiber" id="fiber" class="check_box">
+                        <label for="fiber">Fiber</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="nutrients%5BSUGAR%5D=50%2B" value="Sugars" id="sugars" class="check_box">
+                        <label for="sugars">Sugars</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="nutrients%5BPROCNT%5D=40%2B" value="Protein" id="protein" class="check_box">
+                        <label for="protein">Protein</label>
+                    </div>
+
+
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+
+                    <h1>Micronutrients</h1>
+
+                    <div>
+                        <input type="checkbox" name="nutrients%5BCHOLE%5D=50%2B" value="Cholesterol" id="cholesterol" class="check_box">
+                        <label for="cholesterol">Cholesterol</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="nutrients%5BNA%5D=50%2B" value="Sodium" id="sodium" class="check_box">
+                        <label for="sodium">Sodium</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="nutrients%5BCA%5D=50%2B" value="Calcium" id="calcium" class="check_box">
+                        <label for="calcium">Calcium</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="nutrients%5BMG%5D=50%2B" value="Magnesium" id="magnesium" class="check_box">
+                        <label for="magnesium">Magnesium</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="nutrients%5BK%5D=50%2B" value="Potassium" id="potassium" class="check_box">
+                        <label for="potassium">Potassium</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="nutrients%5FE%5D=50%2B" value="Iron" id="iron" class="check_box">
+                        <label for="iron">Iron</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="nutrients%5P%5D=50%2B" value="Phosphorus" id="phosphorus" class="check_box">
+                        <label for="phosphorus">Phosphorus</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="nutrients%5VITA_RAE%5D=50%2B" value="Vitamin A" id="vitamin-a" class="check_box">
+                        <label for="vitamin-a">Vitamin A</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="nutrients%5VITC%5D=50%2B" value="Vitamin C" id="vitamin-c" class="check_box">
+                        <label for="vitamin-c">Vitamin C</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="nutrients%5THIA%5D=50%2B" value="Thiamin (B1)" id="thiamin" class="check_box">
+                        <label for="thiamin">Thiamin (B1)</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="nutrients%5RIBF%5D=50%2B" value="Riboflavin (B2)" id="riboflavin" class="check_box">
+                        <label for="riboflavin">Riboflavin (B2)</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="nutrients%5NIA%5D=50%2B" value="Niacin (B3)" id="niacin" class="check_box">
+                        <label for="niacin">Niacin (B3)</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="nutrients%5VITB6A%5D=50%2B" value="Vitamin B6" id="vitamin-b6" class="check_box">
+                        <label for="vitamin-b6">Vitamin B6</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="nutrients%5FOLDFE%5D=50%2B" value="Folate (Equivalent)" id="folate" class="check_box">
+                        <label for="folate">Folate (Equivalent)</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="nutrients%5VITB12%5D=50%2B" value="Vitamin B12" id="vitamin-b12" class="check_box">
+                        <label for="vitamin-b12">Vitamin B12</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="nutrients%5VITD%5D=50%2B" value="Vitamin D" id="vitamin-d" class="check_box">
+                        <label for="vitamin-d">Vitamin D</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="nutrients%5TOCPHA%5D=50%2B" value="Vitamin E" id="vitamin-e" class="check_box">
+                        <label for="vitamin-e">Vitamin E</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="nutrients%5VITK1%5D=50%2B" value="Vitamin K" id="vitamin-k" class="check_box">
+                        <label for="vitamin-k">Vitamin K</label>
+                    </div>
+                </div>
+
+                <div id="rec-col" class="screen">
+                </div>
+
+                <div id="load-col" class="screen">
+                    <div id="new-col">
+                        <span class="loader"><span class="loader-inner"></span></span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="third-col">
+                <div id="clicked-buttons"></div>
+                <button type="button" id="submit-right" class="btn">SEARCH</button>
+            </div>
+        </div>
+
+
+
+        <section id="inspiration-section">
+            <div class="block-divider-image"></div>
+            <div class="container inspiration-container">
+                <div class="inspiration-container__wrapper">
+                    <div class="inspiration-container__wrapper-title">
+                        <h2>Looking for the perfect recipe?</h2>
+                        <p>
+                            Find meals that match your dietary preferences and nutritional needs.
+                            Discover a world of delicious options with filters that help you eat healthier and smarter!
+                        </p>
+                    </div>
+                </div>
+                <!-- Immuno supportive recipes -->
+                <article id="immuno-supportive-recipes">
+                    <div class="inspiration-container__heading">
+                        <h3>High-protein Recipes</h3>
+                        <p>Discover high-protein recipes that help build muscle and keep you energized. </p>
+                    </div>
+                    <!-- Swiper design source https://themes.getbootstrap.com/preview/?theme_id=55961-->
+                    <div class="inspiration-container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="swiper-container">
+                                    <div class="swiper-wrapper">
+                                        <!-- Your Swiper slides here -->
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/filter/images/del121223-miso-salmon-farro-bowl-005-ab-hi-res-lead-659c302d48869.avif" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Miso Salmon & Farro Bowl</h5>
+                                                    <a href="https://www.delish.com/cooking/recipe-ideas/a46289532/miso-salmon-and-farro-bowl-recipe/" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/filter/images/del113023-sesame-tofu-broccoli-006-ab-web-lead-65808036d6bd2.avif" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Sesame Tofu & Broccoli                                        </h5>
+                                                    <a href="https://www.delish.com/cooking/recipe-ideas/a46092645/sesame-tofu-and-broccoli-recipe/" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/filter/images/white-chicken-chili-vertical-2-64d3abcdea3bd (1).avif" class="card-img-top" alt="Recipe Image">
+                                                    <h5>White Chicken Chili                                        </h5>
+                                                    <a href="https://www.delish.com/cooking/recipe-ideas/a57946/easy-white-chicken-chili-recipe/" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/filter/images/delish-190815-vegan-meatballs-0081-portrait-pf-1566333710.avif" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Vegan Meatballs</h5>
+                                                    <a href="https://www.delish.com/cooking/recipe-ideas/a28708508/vegan-meatballs-recipe/" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/filter/images/egg-roll-bowls-secondary-651c37088bb12.avif" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Egg Roll Bowls</h5>
+                                                    <a href="https://www.delish.com/cooking/recipe-ideas/recipes/a56236/egg-roll-bowls-recipe/" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/filter/images/fish-taco-bowls-lead-6421f8aa1845c.avif" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Fish Taco Bowls                                        </h5>
+                                                    <a href="https://www.delish.com/cooking/recipe-ideas/a43389828/fish-taco-bowls-recipe/" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Repeat for other cards -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <div class="swiper-button-prev"><i class="fas fa-long-arrow-alt-left"></i></div>
+                        <div class="swiper-button-next"><i class="fas fa-long-arrow-alt-right"></i></div>
+                    </div>
+
+                </article>
+
+                <article id="balanced-recipes">
+                    <div class="inspiration-container__heading">
+                        <h3>low-carb recipes</h3>
+                        <p>
+                            Explore our selection of low-carb recipes that are both delicious and satisfying.
+                        </p>
+                    </div>
+
+                    <div class="inspiration-container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="swiper-container">
+                                    <div class="swiper-wrapper">
+                                        <!-- Your Swiper slides here -->
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/filter/images/low-carb-turkey-gyro-bowl-vertical-2-65df661a8dd04.avif" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Low-Carb Turkey Gyro Bowls </h5>
+                                                    <a href="https://www.delish.com/cooking/recipe-ideas/a60100772/low-carb-turkey-gyro-bowl-recipe/" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/filter/images/grilled-pork-tenderloin-vertical-3-6626cc739eba9.avif" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Grilled Pork Tenderloin                                        </h5>
+                                                    <a href="https://www.delish.com/cooking/recipe-ideas/a20079290/best-grilled-pork-tenderloin-recipe/" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/filter/images/grilled-chicken-salad-lead-6628169550105.avif" class="card-img-top" alt="Recipe Image">
+                                                    <h5>
+                                                        Grilled Chicken Salad
+                                                    </h5>
+                                                    <a href="https://www.delish.com/cooking/recipe-ideas/a21097616/grilled-chicken-salad-recipe/" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/filter/images/del059924-cheesygarliczucchinisteaks-web-008-ab-hi-res-secondary-6657986f86db3.avif" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Cheesy Garlic Zucchini Steaks</h5>
+                                                    <a href="https://www.delish.com/cooking/recipe-ideas/a60610342/cheesy-garlic-zucchini-steaks-recipe/" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/filter/images/turkey-taco-lettuce-wraps2-1668811254 (1).avif" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Turkey Taco Lettuce Wraps                                        </h5>
+                                                    <a href="https://www.delish.com/cooking/recipe-ideas/a20964799/turkey-taco-lettuce-wraps-recipe/" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/filter/images/chicken-alfredo-spaghetti-squash-index-655d16f70763b.avif" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Chicken Alfredo Spaghetti Squash</h5>
+                                                    <a href="https://www.delish.com/cooking/recipe-ideas/a30446410/chicken-alfredo-stuffed-spaghetti-squash-recipe/" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Repeat for other cards -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <div class="swiper-button-prev"><i class="fas fa-long-arrow-alt-left"></i></div>
+                        <div class="swiper-button-next"><i class="fas fa-long-arrow-alt-right"></i></div>
+
+                </article>
+
+                <article id="veggie-recipes">
+                    <div class="inspiration-container__heading">
+                        <h3>Sugar-Free Dessert Recipes</h3>
+                        <p>Indulge in our collection of sugar-free dessert recipes that satisfy your sweet tooth without the extra sugar. </p>
+                        <!-- Source: https://www.pcrm.org/news/blog/foods-boost-immune-system -->
+                    </div>
+
+                    <div class="inspiration-container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="swiper-container">
+                                    <div class="swiper-wrapper">
+                                        <!-- Your Swiper slides here -->
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/filter/images/chia-pudding-1648653518.avif" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Chia Pudding                                    </h5>
+                                                    <a href="https://www.delish.com/cooking/recipe-ideas/a28929331/chia-pudding-recipe/" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/filter/images/almond-cake-copy-1648652942.avif" class="card-img-top" alt="Recipe Image">
+                                                    <h5>
+                                                        Best Almond Cake
+                                                    </h5>
+                                                    <a href="https://www.delish.com/cooking/recipe-ideas/a36815201/almond-cake-recipe/" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/filter/images/paleo-brownies-1648654236.avif" class="card-img-top" alt="Recipe Image">
+                                                    <h5>
+                                                        Fudgy Paleo Brownies
+                                                    </h5>
+                                                    <a href="https://www.delish.com/cooking/recipe-ideas/a25363422/paleo-brownies-recipe/" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/filter/images/acai-bowl-1648652725.avif" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Best-Ever Açaí Bowl                                        </h5>
+                                                    <a href="https://www.delish.com/cooking/recipe-ideas/a27469808/acai-bowl-recipe/" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/filter/images/pbj-cups-1648654992.avif" class="card-img-top" alt="Recipe Image">
+                                                    <h5>PB&J Cups                                        </h5>
+                                                    <a href="https://www.delish.com/cooking/recipe-ideas/recipes/a57753/pbj-cups-recipe/" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="card inspiration-container__card">
+                                                <div class="card-body">
+                                                    <img src="~/filter/images/chocolate-mousse-1648653720 (1).avif" class="card-img-top" alt="Recipe Image">
+                                                    <h5>Chocolate Mousse                                        </h5>
+                                                    <a href="https://www.delish.com/cooking/recipe-ideas/recipes/a57631/paleo-chocolate-mousse-recipe/" target="_blank" rel="noopener">SEE RECIPE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Repeat for other cards -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <div class="swiper-button-prev"><i class="fas fa-long-arrow-alt-left"></i></div>
+                        <div class="swiper-button-next"><i class="fas fa-long-arrow-alt-right"></i></div>
+                    </div>
+
+
+                </article>
+                <!-- /Veggie friendly recipes -->
+            </div>
+        </section>
+
+
+        <!-- /Nutritional information -->
+        <!-- Arrow scroll to top source https://www.tavi.pt/, with adaptations-->
+        <a id="scroll-top" class="scroll-top" style="display: block;" aria-hidden="true">Scroll Top</a>
+        <!-- /Arrow scroll to top -->
+    </main>
+    <!-- Footer -->
+    <footer id="footer" class="footer">
+
+        <div class="footer-top">
+            <div class="container">
+                <div class="row gy-4">
+                    <div class="col-lg-5 col-md-12 footer-info">
+                        <a href="index.html" class="logo d-flex align-items-center">
+                            <img src="~/aboutus/logo.png" alt="">
+                            <span>myStartUp</span>
+                        </a>
+                        <p style="font-weight: 100;">
+                            We offer modern solutions for growing your business.
+                            We are team of talented designers making websites.
+                            With over four decades of experience in managing the systems and workings of
+                            global enterprises, we expertly steer our clients through their digital journey.
+                            Our always-on learning agenda drives their continuous improvement through building and
+                            transferring digital skills, expertise, and ideas from our innovation ecosystem.
+                        </p>
+                        <div class="social-links mt-3">
+                            <a href="https://www.twitter.com" target="_blank" class="twitter"><i class="bi bi-twitter"></i></a>
+                            <a href="https://facebook.com" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
+                            <a href="https://instagram.com" target="_blank" class="instagram"><i class="bi bi-instagram bx bxl-instagram"></i></a>
+                            <a href="https://linkedin.com" target="_blank" class="linkedin"><i class="bi bi-linkedin bx bxl-linkedin"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-6 footer-links">
+                        <h4>Useful Links</h4>
+                        <ul>
+                            <li><i class="bi bi-chevron-right"></i> <a class="navy" href="./index.html">Home</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a class="navy" href="./about.html">About us</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="./services.html">Services</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="./faq.html">FAQ's</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="./faq.html">Terms of service</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="./faq.html">Privacy policy</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-2 col-6 footer-links">
+                        <h4>Our Services</h4>
+                        <ul>
+                            <li><i class="bi bi-chevron-right"></i> <a href="./services.html">Desktop Solutions</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="./services.html">Website/Hybrid App</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="./services.html">UI/ UX Design</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="./services.html">Mobile Solution</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="./services.html">Software Design</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="./services.html">Hire Developers</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+                        <h4>Contact Us</h4>
+                        <p>
+                            #23, VHBCS LAyout <br>
+                            Bangalore, 560045<br>
+                            India <br><br>
+                            <strong>Phone:</strong> +91 1234567890<br>
+                            <strong>Email:</strong> info@example.com<br>
+                        </p>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div style="font-size:1.5rem;" class="copyright">
+                &copy; Copyright <strong><span style="font-size:1.5rem;">myStartUp</span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+
+                Designed by <a href="https://krishnashahu.com.np/" target="_blank">Krishna Shahu</a>
+            </div>
+
+        </div>
+    </footer><!-- End Footer -->
+
+
+
+
+    <script>
+        // Function to parse query parameters from the URL
+        function getQueryParams() {
+            var queryParams = {};
+            var queryString = window.location.search.substring(1);
+            var pairs = queryString.split("&");
+            for (var i = 0; i < pairs.length; i++) {
+                var pair = pairs[i].split("=");
+                queryParams[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+            }
+            return queryParams;
+        }
+
+        // Function to update the checkbox states based on the query parameters
+        function updateCheckboxStates() {
+            var queryParams = getQueryParams();
+            for (var key in queryParams) {
+                if (queryParams[key] === "true") {
+                    var checkbox = document.getElementById(key);
+                    if (checkbox) {
+                        checkbox.checked = true;
+                    }
+                }
+            }
+        }
+
+        // Function to click the search button
+        function clickSearchButton() {
+            var searchButton = document.getElementById("submit");
+            if (searchButton) {
+                searchButton.click();
+            }
+        }
+
+        // Function to execute the search functionality
+        function searchFunction() {
+            // Your search functionality code here
+            console.log("Search button clicked");
+        }
+
+        // Call the function to update checkbox states and click search button on page load
+        window.onload = function() {
+            updateCheckboxStates();
+            clickSearchButton();
+        }
+    </script>
+
+
+
+
+
+    <script src="~/filter/main.js"></script>
+    <script src="~/NEUTRTION/JS/email.js"></script>
+    <script src="~/aboutus/aboutus.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="~/NEUTRTION/JS/swiper.js"></script>
+    <script src="~/NEUTRTION/JS/onload.js"></script>
+    <script async src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- JS Bootstrap links -->
+    <script async src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script async src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+
+    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
+
+
+
+    <script>
+        ScrollReveal().reveal('#heading', {
+          origin: 'left',
+          distance: '100px',
+          duration: 1000,
+          delay: 200,
+          opacity: 0,
+          easing: 'ease-in-out',
+
+          viewFactor: 0.5,
+          interval: 200
+        });
+
+        ScrollReveal().reveal('#paragraph', {
+          origin: 'right',
+          distance: '100px',
+          duration: 1000,
+          delay: 200,
+          opacity: 0,
+          easing: 'ease-in-out',
+
+          viewFactor: 0.5,
+          interval: 200
+        });
+
+        ScrollReveal().reveal('.search-bar-wrapper', {
+          origin: 'right',
+          distance: '100px',
+          duration: 1000,
+          delay: 200,
+          opacity: 0,
+          easing: 'ease-in-out',
+
+          viewFactor: 0.5,
+          interval: 200
+        });
+    </script>
+
+
+
+</body>
+</html>
