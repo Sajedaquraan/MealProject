@@ -2,7 +2,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +38,67 @@
 </head>
 
 <body class="body-fixed">
-  
+
+
+    <header id="header" class="header fixed-top">
+        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+            <a href="@Url.Action("Index")" class="logo d-flex align-items-center">
+                <img src="~/Home/images/logo.svg" alt="">
+                <span></span>
+            </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#">Services<i class="fas fa-chevron-down"></i></a>
+                        <ul class="submenu">
+                            <li><a href="@Url.Action("NEUTRTION","Home")">NEUTRTION info</a></li>
+                            <li><hr></li>
+                            <li><a href="@Url.Action("MEALSUGGESTIONS")">Recipes SUGGESTIONS</a></li>
+                            <li><hr></li>
+                            <li><a href="@Url.Action("filter")">Recipes Filter</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Health Calculator<i class="fas fa-chevron-down"></i></a>
+                        <ul class="submenu">
+                            <li><a href="@Url.Action("BMI")">BMI</a></li>
+                            <li><hr></li>
+                            <li><a href="@Url.Action("BMR")">BMR</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Questions  <i class="fas fa-chevron-down"></i></a>
+                        <ul class="submenu">
+                            <li><a href="https://letsfoodie.com/category/how-tos/cook/" target="_blank">Cook</a></li>
+                            <li><hr></li>
+                            <li><a href="https://letsfoodie.com/category/faqs/comparisons/">Comparisons</a></li>
+                            <li><hr></li>
+                            <li><a href="https://letsfoodie.com/category/how-tos/microwave/">Microwave</a></li>
+                            <li><hr></li>
+                            <li><a href="https://letsfoodie.com/category/faqs/cooking/">Cooking</a></li>
+                            <li><hr></li>
+                            <li><a href="https://letsfoodie.com/category/how-tos/freeze/">Freeze</a></li>
+                            <li><hr></li>
+                            <li><a href="https://letsfoodie.com/category/how-tos/reheat/">Reheat</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="@Url.Action("aboutus")">ABOUT</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+
+            <div class="header-right">
+
+                <a href="@Url.Action("profile")" class="header-btn">
+                    <i class="uil uil-user-md"></i>
+                </a>
+            </div>
+
+
+        </div>
+    </header><!-- End Header -->
 
     <main>
         <!-- Main search bar -->

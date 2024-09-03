@@ -2,7 +2,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <meta name="description" content="Recipes and nutritional information">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/png" href="assets/images/logo/icon-green.png">
+    <link rel="shortcut icon" type="image/png" href="~/assets/images/logo/icon-green.png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -19,10 +19,70 @@
     <script src="~/aboutus/vendor/bootstrap-icons/bootstrap-icons.css"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" type="text/css">
-    <link rel="stylesheet" href="filter.css" type="text/css" />
+    <link rel="stylesheet" href="~/recipe-filter/filter.css" type="text/css" />
     <title>What's for Dinner?</title>
 </head>
 <body>
+
+    <header id="header" class="header fixed-top">
+        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+            <a href="@Url.Action("Index")" class="logo d-flex align-items-center">
+                <img src="~/Home/images/logo.svg" alt="">
+                <span></span>
+            </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#">Services<i class="fas fa-chevron-down"></i></a>
+                        <ul class="submenu">
+                            <li><a href="@Url.Action("NEUTRTION","Home")">NEUTRTION info</a></li>
+                            <li><hr></li>
+                            <li><a href="@Url.Action("MEALSUGGESTIONS")">Recipes SUGGESTIONS</a></li>
+                            <li><hr></li>
+                            <li><a href="@Url.Action("filter")">Recipes Filter</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Health Calculator<i class="fas fa-chevron-down"></i></a>
+                        <ul class="submenu">
+                            <li><a href="@Url.Action("BMI")">BMI</a></li>
+                            <li><hr></li>
+                            <li><a href="@Url.Action("BMR")">BMR</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Questions  <i class="fas fa-chevron-down"></i></a>
+                        <ul class="submenu">
+                            <li><a href="https://letsfoodie.com/category/how-tos/cook/" target="_blank">Cook</a></li>
+                            <li><hr></li>
+                            <li><a href="https://letsfoodie.com/category/faqs/comparisons/">Comparisons</a></li>
+                            <li><hr></li>
+                            <li><a href="https://letsfoodie.com/category/how-tos/microwave/">Microwave</a></li>
+                            <li><hr></li>
+                            <li><a href="https://letsfoodie.com/category/faqs/cooking/">Cooking</a></li>
+                            <li><hr></li>
+                            <li><a href="https://letsfoodie.com/category/how-tos/freeze/">Freeze</a></li>
+                            <li><hr></li>
+                            <li><a href="https://letsfoodie.com/category/how-tos/reheat/">Reheat</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="@Url.Action("aboutus")">ABOUT</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+
+            <div class="header-right">
+
+                <a href="@Url.Action("profile")" class="header-btn">
+                    <i class="uil uil-user-md"></i>
+                </a>
+            </div>
+
+
+        </div>
+    </header><!-- End Header -->
 
 
 
@@ -716,7 +776,7 @@
             <div class="container">
                 <div class="row gy-4">
                     <div class="col-lg-5 col-md-12 footer-info">
-                        <a href="index.html" class="logo d-flex align-items-center">
+                        <a href="@Url.Action("Index")" class="logo d-flex align-items-center">
                             <img src="~/aboutus/logo.png" alt="">
                             <span>myStartUp</span>
                         </a>
@@ -739,8 +799,8 @@
                     <div class="col-lg-2 col-6 footer-links">
                         <h4>Useful Links</h4>
                         <ul>
-                            <li><i class="bi bi-chevron-right"></i> <a class="navy" href="./index.html">Home</a></li>
-                            <li><i class="bi bi-chevron-right"></i> <a class="navy" href="./about.html">About us</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a class="navy" href="@Url.Action("Index")">Home</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a class="navy" href="@Url.Action("aboutus")">About us</a></li>
                             <li><i class="bi bi-chevron-right"></i> <a href="./services.html">Services</a></li>
                             <li><i class="bi bi-chevron-right"></i> <a href="./faq.html">FAQ's</a></li>
                             <li><i class="bi bi-chevron-right"></i> <a href="./faq.html">Terms of service</a></li>
