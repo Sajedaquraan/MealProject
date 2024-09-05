@@ -1,4 +1,5 @@
-﻿@*
+﻿@model Customer
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -17,11 +18,89 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- Style CSS -->
     <link rel="stylesheet" href="~/auth.css">
+    <style>
+        .signup-content {
+            position: relative;
+        }
 
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #fff;
+            border: 2px solid #000;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            font-size: 20px;
+            color: #000;
+            text-decoration: none;
+            z-index: 1000;
+        }
+
+            .close-button:hover {
+                background: #f0f0f0;
+                border-color: #333;
+            }
+
+        .password-requirements,
+        #password-match {
+            display: none;
+        }
+
+        .valid {
+            color: green;
+        }
+
+        .invalid {
+            color: red;
+        }
+
+        .email-status {
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+            .email-status.valid {
+                color: green;
+            }
+
+            .email-status.invalid {
+                color: red;
+            }
+
+        .alert.alert-danger.custom-alert {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .form-button .form-submit:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+    </style>
 
 </head>
 
 <body>
+
+    @if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <p>@error.ErrorMessage</p>
+        }
+    </div>
+}
+
+
     <div class="container-fluid">
         <div class="row">
             <!-- Left Side Image -->
@@ -36,39 +115,51 @@
                     <span class="blur-color mt-4 mb-4 font-weight-normal text-center">Create new account to access all features</span>
                     <hr class="separator mb-0 mt-1">
                     <!-- Registration Form -->
-                    <form action="register.php" method="POST" id="registerForm" class="w-100 mb-3 mt-3">
+                    <form  method="POST" id="registerForm" class="w-100 mb-3 mt-3" enctype="multipart/form-data">
                         <div class="form-group mb-3">
-                            <label for="name" class="mb-2">Name</label>
-                            <input type="text" placeholder="Enter Name" id="name" name="name" class="form-control pt-3 pb-3 pl-3 pr-0 input-auth" required>
+                            <input type="text" placeholder="Enter your Full Name" asp-for="Username" class="form-control pt-3 pb-3 pl-3 pr-0 input-auth" required>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <input type="email" placeholder="Enter email address" asp-for="Useremail" class="form-control pt-3 pb-3 pl-3 pr-0 input-auth" required>
+                        </div>
+                        @if (TempData["ErrorMessage"] != null)
+                        {
+                            <div class="alert alert-danger custom-alert" role="alert">
+                                @TempData["ErrorMessage"]
+                            </div>
+                        }
+
+                        <div class="form-group mb-3">
+                            <input type="password" placeholder="Create New Password" id="password" asp-for="Userpassword" class="form-control pt-3 pb-3 pl-3 pr-0 input-auth" required>
+                        </div>
+                        <div class="password-requirements" id="password-requirements">
+                            <p>Password must meet the following requirements:</p>
+                            <ul>
+                                <li id="length" class="invalid">At least 8 characters long</li>
+                                <li id="uppercase" class="invalid">Contains an uppercase letter</li>
+                                <li id="lowercase" class="invalid">Contains a lowercase letter</li>
+                                <li id="number" class="invalid">Contains a number</li>
+                                <li id="special" class="invalid">Contains a special character (e.g., #, $)</li>
+                            </ul>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="email" class="mb-2">Email Address*</label>
-                            <input type="email" placeholder="Enter email address" id="email" name="email" class="form-control pt-3 pb-3 pl-3 pr-0 input-auth" required>
-                            <span id="email-message" class="text-danger"></span> <!-- Placeholder for error message -->
+                            <input type="password" placeholder="Confirm Password" id="confirm-password" name="confirm_password" class="form-control pt-3 pb-3 pl-3 pr-0 input-auth"  required>                            
                         </div>
+                        <div id="password-match" class="invalid">Passwords do not match</div>
                         <div class="form-group mb-3">
-                            <label for="phone" class="mb-2">Phone Number</label>
-                            <input type="number" placeholder="08xxxxxxxxxx" id="phone" name="phone" class="form-control pt-3 pb-3 pl-3 pr-0 input-auth" required>
+                            <input type="file" asp-for="ImageFile" class="form-control pt-3 pb-3 pl-3 pr-0 input-auth" required>
                         </div>
-                        <div class="form-group mb-3">
-                            <label for="password" class="mb-2">Create New Password</label>
-                            <input type="password" placeholder="Create New Password" id="password" name="password" class="form-control pt-3 pb-3 pl-3 pr-0 input-auth" required oninput="checkPasswordMatch()">
-                            <small id="password-length" class="form-text text-muted"></small>
-                            <small id="password-uppercase" class="form-text text-muted"></small>
-                            <small id="password-digit" class="form-text text-muted"></small>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="confirm_password" class="mb-2">Confirm Password</label>
-                            <input type="password" placeholder="Confirm Password" id="confirm-password" name="confirm_password" class="form-control pt-3 pb-3 pl-3 pr-0 input-auth" oninput="checkPasswordMatch()" required>
-                            <span id="password-message" class="text-muted"></span>
-                        </div>
+
                         <div class="form-group mb-4 d-flex align-items-center" style="gap: 10px;">
                             <input type="checkbox" class="checkbox" id="checkbox" required>
                             <label for="checkbox">I agree to terms & conditions</label>
                         </div>
-                        <button type="submit" id="register-button" class="login-btn submit w-100 btn-main pt-3 pb-3 font-weight-medium" disabled>
-                            Register Account
-                        </button>
+
+                        <div >
+                            <input type="submit" name="signup" id="signup" class="login-btn submit w-100 btn-main pt-3 pb-3 font-weight-medium" value="Register"  />
+                        </div>
+                        
                     </form>
                     <!-- Login Link -->
                     <div class="w-100 d-flex flex-column">
@@ -76,6 +167,8 @@
                             <span class="blur-color">
                                 Already have an account? <a href="@Url.Action("Login")" class="clicked text-decoration-none">Log In Here</a>
                             </span>
+                            <br />
+                            <br />
                         </div>
                     </div>
                 </div>
@@ -83,7 +176,68 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS and jQuery -->
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const passwordInput = document.getElementById("password");
+            const confirmPasswordInput = document.getElementById("confirm-password");
+            const passwordRequirements = document.getElementById("password-requirements");
+            const passwordMatchMessage = document.getElementById("password-match");
+            const registerButton = document.getElementById("signup");
+
+            function validatePassword() {
+                passwordRequirements.style.display = "block";
+
+                const length = document.getElementById("length");
+                const uppercase = document.getElementById("uppercase");
+                const lowercase = document.getElementById("lowercase");
+                const number = document.getElementById("number");
+                const special = document.getElementById("special");
+
+                const value = passwordInput.value;
+                length.className = value.length >= 8 ? "valid" : "invalid";
+                uppercase.className = /[A-Z]/.test(value) ? "valid" : "invalid";
+                lowercase.className = /[a-z]/.test(value) ? "valid" : "invalid";
+                number.className = /\d/.test(value) ? "valid" : "invalid";
+                special.className = /[!#$%^&*(),.?":{}|<>]/.test(value) ? "valid" : "invalid";
+
+                checkButtonState();
+            }
+
+            function validatePasswordMatch() {
+                passwordMatchMessage.style.display = "block";
+                if (confirmPasswordInput.value === passwordInput.value) {
+                    passwordMatchMessage.className = "valid";
+                    passwordMatchMessage.textContent = "Passwords match";
+                } else {
+                    passwordMatchMessage.className = "invalid";
+                    passwordMatchMessage.textContent = "Passwords do not match";
+                }
+
+                checkButtonState();
+            }
+
+            function checkButtonState() {
+                const isPasswordValid = document.querySelectorAll("#password-requirements .valid").length === 5;
+                const isPasswordMatch = confirmPasswordInput.value === passwordInput.value;
+                registerButton.disabled = !(isPasswordValid && isPasswordMatch);
+            }
+
+            passwordInput.addEventListener("input", validatePassword);
+            confirmPasswordInput.addEventListener("input", validatePasswordMatch);
+        });
+    </script>
+
+
+
+<!-- Bootstrap JS and jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.11.6/dist/umd/popper.min.js"
             integrity="sha384-oBqDVmMz4fnFO9gybBudbVbK2Qp2KStz9a5DeQcYihl4KSC4KxC7fYx04gHjJV8Y"
             crossorigin="anonymous"></script>
@@ -91,101 +245,7 @@
             integrity="sha384-QJHtvGhmr9EXGCssDkE6daMF4kdS7BndFRAX3nC1JhFjqpb4aB9KK76P4jKY6p9G"
             crossorigin="anonymous"></script>
 
-    <!-- JavaScript for Password Matching Check -->
-    <script>
-        var emailExists = false; // State variable to check if email exists
-
-        function checkPasswordMatch() {
-          var password = document.getElementById("password").value;
-          var confirmPassword = document.getElementById("confirm-password").value;
-          var messageElement = document.getElementById("password-message");
-          var registerButton = document.getElementById("register-button");
-
-          var isPasswordValid = true;
-
-          if (password === confirmPassword) {
-            messageElement.textContent = "Passwords match";
-            messageElement.className = "text-success"; // Set class for green color
-          } else {
-            messageElement.textContent = "Passwords do not match";
-            messageElement.className = "text-danger"; // Set class for red color
-            isPasswordValid = false;
-          }
-
-          // Check password strength and display requirements
-          var lengthElement = document.getElementById("password-length");
-          var uppercaseElement = document.getElementById("password-uppercase");
-          var digitElement = document.getElementById("password-digit");
-
-          // Reset messages
-          lengthElement.textContent = "";
-          uppercaseElement.textContent = "";
-          digitElement.textContent = "";
-
-          // Define password requirements
-          if (password.length < 8) {
-            lengthElement.textContent = "Password must be at least 8 characters long";
-            lengthElement.className = "text-danger"; // Set class for red color
-            isPasswordValid = false;
-          } else {
-            lengthElement.textContent = "Password length requirement met";
-            lengthElement.className = "text-success"; // Set class for green color
-          }
-          if (!password.match(/[A-Z]/)) {
-            uppercaseElement.textContent = "Password must contain at least one uppercase letter";
-            uppercaseElement.className = "text-danger"; // Set class for red color
-            isPasswordValid = false;
-          } else {
-            uppercaseElement.textContent = "Uppercase letter requirement met";
-            uppercaseElement.className = "text-success"; // Set class for green color
-          }
-          if (!password.match(/[0-9]/)) {
-            digitElement.textContent = "Password must contain at least one digit";
-            digitElement.className = "text-danger"; // Set class for red color
-            isPasswordValid = false;
-          } else {
-            digitElement.textContent = "Digit requirement met";
-            digitElement.className = "text-success"; // Set class for green color
-          }
-
-          // Enable/disable register button
-          if (isPasswordValid && password === confirmPassword && !emailExists) {
-            registerButton.disabled = false;
-          } else {
-            registerButton.disabled = true;
-          }
-        }
-
-        // JavaScript to handle email existence check message
-        document.getElementById("email").addEventListener("blur", function () {
-          var email = this.value;
-          var emailMessageElement = document.getElementById("email-message");
-          var registerButton = document.getElementById("register-button");
-
-          // Send AJAX request to server to check if email exists
-          var xhr = new XMLHttpRequest();
-          xhr.open("POST", "../check_email.php", true);
-          xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-          xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-              var response = xhr.responseText;
-              if (response === "exists") {
-                emailMessageElement.textContent = "Email already exists";
-                emailMessageElement.className = "text-danger"; // Set class for red color
-                registerButton.disabled = true; // Disable register button
-                emailExists = true; // Update state variable
-              } else {
-                emailMessageElement.textContent = "";
-                emailMessageElement.className = ""; // Reset class
-                emailExists = false; // Update state variable
-                // Call checkPasswordMatch to update register button status based on password validation
-                checkPasswordMatch();
-              }
-            }
-          };
-          xhr.send("email=" + encodeURIComponent(email));
-        });
-    </script>
+  
 </body>
 
 </html>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MealProject.Models;
@@ -16,6 +17,7 @@ public partial class Userrecipe
 
     public string? Image { get; set; }
     [NotMapped]
+    //[DataType(DataType.Upload)]
     public virtual IFormFile ImageFile { get; set; }
     public DateTime? CreatedAt { get; set; }
 

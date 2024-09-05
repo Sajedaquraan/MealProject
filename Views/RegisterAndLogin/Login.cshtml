@@ -4,6 +4,12 @@
 @{
     Layout = null;
 }
+@{
+    var successMessage = TempData["SuccessMessage"] as string;
+}
+@{
+    var ErrorMessage = TempData["ErrorMessage"] as string;
+}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,23 +26,86 @@
     <!-- JavaScript for error message display -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-          const params = new URLSearchParams(window.location.search);
-          const error = params.get('error');
+            const params = new URLSearchParams(window.location.search);
+            const error = params.get('error');
 
-          if (error) {
-            const errorDiv = document.createElement('div');
-            errorDiv.className = 'alert alert-danger alert-dismissible fade show';
-            errorDiv.role = 'alert';
-            errorDiv.innerHTML = `
-              <strong>Error:</strong> ${decodeURIComponent(error)}
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            `;
+            if (error) {
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'alert alert-danger alert-dismissible fade show';
+                errorDiv.role = 'alert';
+                errorDiv.innerHTML = `
+                      <strong>Error:</strong> ${decodeURIComponent(error)}
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    `;
 
-            const formContainer = document.querySelector('.form-container');
-            formContainer.insertBefore(errorDiv, formContainer.firstChild);
-          }
+                const formContainer = document.querySelector('.form-container');
+                formContainer.insertBefore(errorDiv, formContainer.firstChild);
+            }
         });
     </script>
+
+    <style>
+        #forgot-password-content input[type="email"] {
+            width: 50%;
+            padding: 5px;
+            font-size: 12px;
+        }
+
+        #forgot-password-content input[type="submit"] {
+            width: 50%;
+            font-size: 12px;
+            padding: 5px 10px;
+        }
+
+        .signin-content {
+            position: relative; /* Ensure the container is positioned relative */
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #fff;
+            border: 2px solid #000;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            font-size: 20px;
+            color: #000;
+            text-decoration: none;
+            z-index: 1000;
+        }
+
+            .close-button:hover {
+                background: #f0f0f0;
+                border-color: #333;
+            }
+
+        .custom-alert {
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .alert-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .fab.fa-google {
+            font-size: 30px; /* Larger size for the Google icon */
+            color: #db4437; /* Google brand color */
+            transition: transform 0.2s; /* Smooth hover effect */
+        }
+
+            .fab.fa-google:hover {
+                transform: scale(1.1); /* Slightly enlarge on hover */
+            }
+
+    </style>
 </head>
 
 <body>
@@ -45,7 +114,7 @@
             <!-- Background Image Column -->
             <div class="position-relative d-none d-md-block col-md-4 col-lg-6 p-0">
                 <img src="~/loginn.PNG" alt="Background"
-                     style="object-fit: cover; object-position: center; " class="w-100 full-h">
+                     style="object-fit: cover; object-position: center;" class="w-100 full-h">
             </div>
             <!-- Login Form Column -->
             <div class="full-h d-flex justify-content-center align-items-center col-12 col-md-8 col-lg-6">
@@ -55,18 +124,36 @@
                     <div class="form-container">
                         <span class="blur-color mt-4 mb-4 font-weight-normal text-center">Log In into your existing account</span>
                         <hr class="separator mb-0 mt-1">
-                        <!-- Form to submit login credentials to login.php -->
-                        <form action="./login.php" method="POST" class="w-100 mb-3 mt-3">
+                        <!-- Form to submit login credentials -->
+                        <form method="POST" class="w-100 mb-3 mt-3">
                             <div class="form-group mb-3">
-                                <label for="email" class="mb-2">E-mail</label>
                                 <input type="email" name="email" placeholder="Enter Email" id="email"
                                        class="form-control pt-3 pb-3 pl-3 pr-0 input-auth" required>
                             </div>
                             <div class="form-group mb-3">
-                                <label for="password" class="mb-2">Password</label>
                                 <input type="password" name="password" placeholder="Password" id="password"
                                        class="form-control pt-3 pb-3 pl-3 pr-0 input-auth" required>
                             </div>
+
+                            @if (!string.IsNullOrEmpty(successMessage))
+                            {
+                                <div class="alert alert-success custom-alert" role="alert">
+                                    @successMessage
+                                </div>
+                            }
+                            else if (!string.IsNullOrEmpty(ErrorMessage))
+                            {
+                                <div class="alert alert-danger custom-alert" role="alert">
+                                    @ErrorMessage
+                                </div>
+                            }
+
+                            <div class="form-group">
+                                <a href="javascript:void(0);" class="label-agree-term" data-toggle="modal" data-target="#forgotPasswordModal">
+                                    <span><span></span></span>Forgot password
+                                </a>
+                            </div>
+
                             <button type="submit" class="login-btn submit w-100 pt-3 pb-3 font-weight-medium">
                                 Log In
                             </button>
@@ -85,10 +172,33 @@
         </div>
     </div>
 
-    <!-- Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-Sgt4ivN01Czl0h2sCO7Rvu5r09gF5fcf1kUmzw8usQ2tx5UzCNcPBsDQZi8W5+d1" crossorigin="anonymous"></script>
+    <!-- Forgot Password Modal -->
+    <div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="forgotPasswordModalLabel">Forgot Password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="forgot-password-content">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="~/RegisterAndLogin/js/main.js"></script>
+
+    <script>
+        // Load Forgot Password page into the modal
+        $(document).on('click', '[data-toggle="modal"]', function () {
+            $('#forgot-password-content').load('@Url.Action("ForgotPassword")');
+        });
+    </script>
 </body>
 
 </html>
-

@@ -203,7 +203,7 @@
                     text-decoration: underline;
                 }
 
-        media (min-width: 768px) {
+        @@media (min-width: 768px) {
                     .profile-container {
                         flex-direction: row; /* Align items horizontally on larger screens */
                     }
@@ -218,7 +218,7 @@
                     }
                 }
 
-        media (max-width: 767px) {
+        @@media (max-width: 767px) {
                     .form-container {
                         padding-right: 0;
                         border-right: none;
@@ -254,7 +254,7 @@
                 <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Liked Recipe</button>
             </li>
             <li class="nav-item" role="presentation">
-                <a href="./add-recipe/add-recipe.html" class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Add Recipe</button>
+                <button href="@Url.Action("addrecipe")" class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Add Recipe</button>
             </li>
         </ul>
 
@@ -275,8 +275,8 @@
                     </div>
 
                     <div class="action-links">
-                        <a href="../Best-Resturant-main/login/logout.php"><h4>Logout</h4></a>
-                        <a href="../Best-Resturant-main/change-pass/change_password(html).php"><h1>Change Password</h1></a>
+                        <a href="#"><h4>Logout</h4></a>
+                        <a href="#"><h1>Change Password</h1></a>
                     </div>
                 </div>
             </div>

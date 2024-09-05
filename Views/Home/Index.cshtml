@@ -48,6 +48,20 @@
 <body class="body-fixed">
 
 
+    @{
+        var userProfileImage = ViewBag.Image as string;
+        var profileImageUrl = Url.Content($"~/images/{userProfileImage}");
+
+        var defaultImageUrl = Url.Content("~/Images/default-profile-image.jpg");
+
+        var userName = ViewBag.Name as string;
+        var userEmail = ViewBag.Email as string;
+
+        var isLoggedIn = userName != null;
+
+    }
+
+
     <header id="header" class="header fixed-top">
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
@@ -96,14 +110,24 @@
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
+            @if (isLoggedIn)
+            {
+                <div class="header-right">
 
-            <div class="header-right">
+                    <a href="@Url.Action("profile")" class="header-btn">
+                        <i class="uil uil-user-md"></i>
+                    </a>
+                </div>
+            }
+            else 
+            {
+                <div class="header-right">
 
-                <a href="@Url.Action("profile")" class="header-btn">
-                    <i class="uil uil-user-md"></i>
-                </a>
-            </div>
-
+                    <a href="@Url.Action("Login","RegisterAndLogin")" class="header-btn">
+                        <i class="uil uil-user-md"></i>
+                    </a>
+                </div>
+            }
 
         </div>
     </header><!-- End Header -->

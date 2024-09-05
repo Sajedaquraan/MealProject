@@ -12,7 +12,14 @@ namespace MealProject
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<ModelContext>(options => options.UseOracle(builder.Configuration.GetConnectionString("DefaultConnection")));
-
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(60);
+                //options.Cookie.HttpOnly = true;
+                //options.Cookie.IsEssential = true;
+                //options.Cookie.Name = "MyCustomSessionCookie";
+                //options.Cookie.Path = "/"; // Ensure this covers all paths
+            });
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -25,7 +32,7 @@ namespace MealProject
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();
