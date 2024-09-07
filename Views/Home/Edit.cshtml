@@ -1,0 +1,122 @@
+﻿@model MealProject.Models.Customer
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = null;
+}
+
+<style>
+    .form-container {
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        width: 50%;
+    }
+
+    h1, h4 {
+        text-align: center;
+        font-family: Arial, sans-serif;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 4px;
+        }
+
+    a {
+        display: block;
+        text-align: center;
+        padding: 12px 20px;
+        margin-top: 20px;
+        background-color: #6c757d;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .text-danger {
+        color: red;
+        font-size: 12px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+</style>
+
+<h1>Edit Customer</h1>
+<h4>Update your information below</h4>
+<hr />
+
+<div class="form-container">
+    <form asp-action="Edit" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Userid" />
+
+        <div class="form-group">
+            <label asp-for="Username" class="control-label"></label>
+            <input asp-for="Username" placeholder="Enter your username" />
+            <span asp-validation-for="Username" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="hidden" asp-for="Useremail" placeholder="Enter your email" />
+            <span asp-validation-for="Useremail" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Userpassword" class="control-label"></label>
+            <input asp-for="Userpassword" type="password" placeholder="Enter a new password" />
+            <span asp-validation-for="Userpassword" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ImageFile" class="control-label"></label>
+            <input asp-for="ImageFile" type="file" />
+            <span asp-validation-for="ImageFile" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="hidden" asp-for="Googleid" />
+            <span asp-validation-for="Googleid" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="hidden" asp-for="Registerdate" />
+            <span asp-validation-for="Registerdate" class="text-danger"></span>
+        </div>
+
+        <input type="submit" value="Save" />
+    </form>
+</div>
+
+<div>
+    <a asp-action="Profile">Back to Profile</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

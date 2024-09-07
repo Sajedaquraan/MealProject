@@ -157,9 +157,73 @@ namespace MealProject.Controllers
             var Userrecipe = _context.Userrecipes.Where(x => x.Userloginid == userLoginId).ToList();
 
             var result = Tuple.Create<Customer,IEnumerable<Likedrecipe>,IEnumerable<Userrecipe>>(user, Likedrecipe, Userrecipe);
+
+            ViewBag.UserId = userLoginId;
             return View(result);
         }
 
+        public IActionResult Edit() 
+        {
+
+            var userLoginId = HttpContext.Session.GetInt32("CustomerID");
+
+            var user = _context.Customers.Where(x => x.Userid == userLoginId).SingleOrDefault();
+            ViewBag.UserName = user.Username;
+            ViewBag.UserImage = user.Userimage;
+            ViewBag.UserEmail = user.Useremail;
+
+
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult DeleteRecipe(int id, string type)
+        {
+            try
+            {
+                // Convert ID to decimal
+                decimal recipeId = (decimal)id;
+
+                if (type == "user") // Check if the recipe is from Userrecipe
+                {
+                    var recipe = _context.Userrecipes.Find(recipeId);
+                    if (recipe != null)
+                    {
+                        _context.Userrecipes.Remove(recipe);
+                        _context.SaveChanges();
+                        return Json(new { success = true });
+                    }
+                    else
+                    {
+                        return Json(new { success = false, message = "Recipe not found in Userrecipe." });
+                    }
+                }
+                else if (type == "liked") // Check if the recipe is from Likedrecipe
+                {
+                    var recipe = _context.Likedrecipes.Find(recipeId);
+                    if (recipe != null)
+                    {
+                        _context.Likedrecipes.Remove(recipe);
+                        _context.SaveChanges();
+                        return Json(new { success = true });
+                    }
+                    else
+                    {
+                        return Json(new { success = false, message = "Recipe not found in Likedrecipe." });
+                    }
+                }
+                else
+                {
+                    return Json(new { success = false, message = "Invalid recipe type." });
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                Console.WriteLine("Error: " + ex.Message);
+                return Json(new { success = false, message = "An error occurred: " + ex.Message });
+            }
+        }
 
         public IActionResult Privacy()
         {
