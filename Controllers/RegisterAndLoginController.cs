@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using System.Net.Mail;
 using System.Net;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
+using System.Security.Claims;
 
 
 namespace MealProject.Controllers
@@ -298,6 +301,46 @@ namespace MealProject.Controllers
             ModelState.AddModelError("", "Passwords do not match or there was an issue.");
             return View();
         }
+
+
+        public async Task Login1()
+        {
+            await HttpContext.ChallengeAsync(GoogleDefaults.AuthenticationScheme,
+                new AuthenticationProperties
+
+                {
+                    RedirectUri = Url.Action("GoogleResponse1")
+                });
+
+        }
+
+        public async Task<ActionResult> GoogleResponse1(int id)
+        {
+            var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            if (result?.Principal == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            var googleId = result.Principal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var emailClaim = result.Principal.FindFirst(ClaimTypes.Email)?.Value;
+            var nameClaim = result.Principal.FindFirst(ClaimTypes.Name)?.Value;
+            var profilePicture = result.Principal.FindFirst("picture")?.Value;
+
+            if (emailClaim != null)
+            {
+                var existingUser = _context.Userlogins.FirstOrDefault(u => u.Email == emailClaim);
+
+
+            }
+
+            // Redirect to the home page
+            return RedirectToAction("Index", "Home");
+        }
+
+
+
+
 
         public IActionResult Logout()
         {

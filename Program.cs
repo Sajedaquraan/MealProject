@@ -1,4 +1,6 @@
 using MealProject.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.EntityFrameworkCore;
 
 namespace MealProject
@@ -20,6 +22,25 @@ namespace MealProject
                 //options.Cookie.Name = "MyCustomSessionCookie";
                 //options.Cookie.Path = "/"; // Ensure this covers all paths
             });
+
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+            })
+             .AddCookie(options =>
+             {
+                 options.LoginPath = "/Account/Login";
+                 options.LogoutPath = "/Account/Logout";
+             })
+             .AddGoogle(GoogleDefaults.AuthenticationScheme, options =>
+             {
+                 options.ClientId = builder.Configuration.GetSection("GoogleKeys:ClientId").Value;
+                 options.ClientSecret = builder.Configuration.GetSection("GoogleKeys:ClientSecret").Value;
+
+
+             });
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -35,6 +56,7 @@ namespace MealProject
             app.UseSession();
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(
