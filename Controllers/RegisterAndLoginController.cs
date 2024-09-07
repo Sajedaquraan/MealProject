@@ -299,6 +299,10 @@ namespace MealProject.Controllers
             return View();
         }
 
-
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear(); // Clear the session on logout
+            return RedirectToAction("Login");
+        }
     }
 }

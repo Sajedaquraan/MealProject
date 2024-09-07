@@ -218,73 +218,23 @@ function displayErrorMessage(message) {
   const errorHandling = document.getElementById("main-container__error-handling");
   errorHandling.innerHTML = `<div class="alert alert-danger" role="alert">${message}</div>`;
 }
-function toggleHeartIcon(icon, recipeLabel, recipeData, recipeImage) {
- 
-// Check if user is logged in
-fetch('./check_login.php')
-  .then(response => response.json())
-  .then(data => {
-      if (data.logged_in) {
-        
-          // User is logged in, proceed with saving the recipe
-          saveRecipe(icon, recipeLabel, recipeData, recipeImage, data.user_id);
-      } else {
-          // User is not logged in, redirect to login page
-          alert("You must loggin to your profile.");
-          window.location.href = '../login/login.html';
-      }
-      
-  })
-  .catch(error => {
-      console.error('Error:', error);
-      displayErrorMessage('An error occurred while checking the login status.');
-  });
+
+
+
+function toggleHeartIcon(element, recipeLabel, recipeData, recipeImage) {
+    // Change the heart icon class to indicate saved state
+    element.classList.toggle("saved");
+
+    // Find the hidden form fields and set their values
+    document.getElementById("recipeLabel").value = recipeLabel;
+    document.getElementById("recipeData").value = decodeURIComponent(recipeData);
+    document.getElementById("recipeImage").value = recipeImage;
+
+    // Submit the form
+    document.getElementById("recipeForm").submit();
 }
 
 
-function saveRecipe(icon, recipeLabel, recipeData, recipeImage, userId) {
-if (!icon.classList.contains('liked')) {
-  icon.classList.add("liked");
-  icon.querySelector('.heart').classList.remove("far");
-  icon.querySelector('.heart').classList.add("fas");
-  likedRecipes.add(recipeLabel);
-
-  // Send to backend
-  const data = new URLSearchParams();
-  data.append('user_id', userId);
-  data.append('recipe_label', recipeLabel);
-  data.append('recipe_data', decodeURIComponent(recipeData));
-  data.append('recipe_image', recipeImage); // Add the image URL
-
-  fetch('./save_recipe.php', {
-      method: 'POST',
-      body: data,
-      headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-      },
-  })
-  .then(response => response.json())
-  .then(data => {
-      if (data.success) {
-          alert(`Meal "${recipeLabel}" has been saved to your profile.`);
-      } else {
-          displayErrorMessage(`Error: ${data.message}`);
-      }
-  })
-  .catch(error => {
-      console.error('Error:', error);
-      displayErrorMessage('An error occurred while saving the recipe.');
-  });
-} else {
-  displayErrorMessage(`You have already saved "${recipeLabel}" to your profile.`);
-}
-}
-
-
-
-
-
-// Function to display error messages
 function displayErrorMessage(message) {
 errorHandling.innerHTML = `<div class="alert alert-danger">${message}</div>`;
 }

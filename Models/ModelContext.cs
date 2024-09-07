@@ -119,7 +119,7 @@ public partial class ModelContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("RECIPEDATA");
             entity.Property(e => e.Recipeimage)
-                .HasMaxLength(1000)
+                .HasMaxLength(4000)
                 .IsUnicode(false)
                 .HasColumnName("RECIPEIMAGE");
             entity.Property(e => e.Recipelabel)

@@ -1,4 +1,5 @@
-﻿@*
+﻿@model Tuple<Customer,IEnumerable<Likedrecipe>,IEnumerable<Userrecipe>>
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -257,25 +258,24 @@
                 <button href="@Url.Action("addrecipe")" class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Add Recipe</button>
             </li>
         </ul>
-
         <div class="profile-container">
             <!-- Form and Action Links -->
             <div class="form-container">
                 <div class="user-form text-center mt-5">
-                    <img src="uploads/<?php echo htmlspecialchars($user['profile_picture']); ?>" class="profile-pic" alt="Profile Picture"><br>
-                    <h3><?php echo htmlspecialchars($user['name']); ?></h3>
-                    <p><?php echo htmlspecialchars($user['email']); ?></p>
+                    <img src="@Url.Content("~/Images/"+@ViewBag.UserImage)" asp-append-version="true" class="profile-pic" alt="Profile Picture"><br>
+                    <h3>@ViewBag.UserName</h3>
+                    <p>@ViewBag.UserEmail</p>
 
-                    <div class="form-container">
+                   @*  <div class="form-container">
                         <form class="upload-form" action="upload.php" method="post" enctype="multipart/form-data">
 
                             <input type="file" id="profile_picture" name="profile_picture" required><br>
                             <input type="submit" value="Upload Picture">
                         </form>
-                    </div>
+                    </div> *@
 
                     <div class="action-links">
-                        <a href="#"><h4>Logout</h4></a>
+                        <a href="@Url.Action("Logout","RegisterAndLogin")"><h4>Logout</h4></a>
                         <a href="#"><h1>Change Password</h1></a>
                     </div>
                 </div>
@@ -285,20 +285,17 @@
             <div class="user-recipes">
                 <h1>Recipes you Create</h1>
                 <div class="recipes-container">
-                    <?php while ($row = $recipes_result->fetch_assoc()): ?>
-                    <div class="recipe-card" data-recipe-id="<?php echo htmlspecialchars($row['id']); ?>">
+                    @foreach (var item in Model.Item3) 
+                    {                   
+                        <div class="recipe-card" data-recipe-id="@item.Recipesid">
                         <span class="close-btn" onclick="removeCard(this)">×</span>
-                        <h3><?php echo htmlspecialchars($row['title']); ?></h3>
-                        <p><?php echo htmlspecialchars($row['ingredients']); ?></p>
-                        <?php if (!empty($row['video'])): ?>
-                        <a href="<?php echo htmlspecialchars($row['video']); ?>" target="_blank">Watch Video</a>
-                        <?php endif; ?>
-                        <?php if (!empty($row['image'])): ?>
-                        <img src="uploads/<?php echo htmlspecialchars($row['image']); ?>" alt="Recipe Image">
-                        <?php endif; ?>
-                        <p>Added on: <?php echo htmlspecialchars($row['created_at']); ?></p>
-                    </div>
-                    <?php endwhile; ?>
+                            <h3>@item.Title</h3>
+                        <p>@item.Ingredients</p>
+                        <a href="@item.Video" target="_blank">Watch Video</a>
+                        <img src="@Url.Content("~/Images/"+item.Image)" alt="Recipe Image">
+                        <p>Added on: @item.CreatedAt</p>
+                        </div>
+                    }
                 </div>
             </div>
 
@@ -306,22 +303,24 @@
             <div class="liked-recipes">
                 <h2>Liked Recipes</h2>
                 <div class="recipes-container">
-                    <?php while ($row = $liked_result->fetch_assoc()): ?>
-                    <?php
-                    $recipe_data = trim($row['recipe_data'], '"');
-                    $recipe_image = $row['recipe_image'];
-                    ?>
-                    <div class="recipe-card" data-recipe-id="<?php echo htmlspecialchars($row['id']); ?>">
-                        <span class="close-btn" onclick="removeLikedRecipe(this)">×</span>
-                        <img src="<?php echo $recipe_image; ?>" alt="Recipe Image" class="recipe-card__img">
-                        <h3><?php echo htmlspecialchars($row['recipe_label']); ?></h3>
-                        <a href="<?php echo htmlspecialchars($recipe_data); ?>" target="_blank">View Recipe</a>
-                        <p>Added on: <?php echo htmlspecialchars($row['created_at']); ?></p>
-                    </div>
-                    <?php endwhile; ?>
+                    @foreach (var item in Model.Item2)
+                    {
+                        var cleanedRecipeData = item.Recipedata.Replace("\"", ""); 
+
+                        <div class="recipe-card" data-recipe-id="@item.Likedid">
+                            <span class="close-btn" onclick="removeCard(this)">×</span>
+                            <h3>@item.Recipelabel</h3>                           
+                            <a href="@cleanedRecipeData" target="_blank">View Recipe</a>
+                            <img src="@Url.Content(item.Recipeimage)" alt="Recipe Image">
+                            <p>Added on: @item.Createdat</p>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
+
+
+
         <script>
             function removeCard(button) {
                 var card = button.parentElement;
@@ -366,10 +365,7 @@
             }
         </script>
     </div>
-    <?php
-    $stmt->close();
-    $conn->close();
-    ?>
+
 </body>
 </html>
 
