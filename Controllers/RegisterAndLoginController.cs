@@ -314,9 +314,10 @@ namespace MealProject.Controllers
 
         }
 
-        public async Task<ActionResult> GoogleResponse1(int id)
+        public async Task<ActionResult> GoogleResponse1()
         {
             var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
             if (result?.Principal == null)
             {
                 return RedirectToAction("Login", "Account");
@@ -329,17 +330,52 @@ namespace MealProject.Controllers
 
             if (emailClaim != null)
             {
-                var existingUser = _context.Userlogins.FirstOrDefault(u => u.Email == emailClaim);
+                // Check if the user already exists in the Userlogin table
+                var existingUserLogin = _context.Userlogins.FirstOrDefault(u => u.Email == emailClaim);
 
+                if (existingUserLogin == null)
+                {
+                    // If the user doesn't exist, create a new Customer and Userlogin
 
+                    // Create new Customer entry
+                    var newCustomer = new Customer
+                    {
+                        Username = nameClaim,
+                        Useremail = emailClaim,
+                        Googleid = googleId != null ? Convert.ToDecimal(googleId) : (decimal?)null,
+                        Userimage = profilePicture,
+                        Registerdate = DateTime.Now
+                    };
+
+                    // Save new customer to the database
+                    _context.Customers.Add(newCustomer);
+                    await _context.SaveChangesAsync();
+
+                    // Create new Userlogin entry associated with the newly created Customer
+                    var newUserLogin = new Userlogin
+                    {
+                        Email = emailClaim,
+                        Userid = newCustomer.Userid, // Associate the Customer with this Userlogin
+                        Roleid = 2, // Assuming default role ID; change according to your roles setup
+                    };
+
+                    // Save the new Userlogin to the database
+                    _context.Userlogins.Add(newUserLogin);
+                    await _context.SaveChangesAsync();
+
+                    // Store Userloginid in session
+                    HttpContext.Session.SetInt32("CustomerID", (int)newUserLogin.Userloginid);
+                }
+                else
+                {
+                    // User already exists, so store the Userloginid in session
+                    HttpContext.Session.SetInt32("CustomerID", (int)existingUserLogin.Userloginid);
+                }
             }
 
-            // Redirect to the home page
+            // Redirect to the home page after login
             return RedirectToAction("Index", "Home");
         }
-
-
-
 
 
         public IActionResult Logout()
