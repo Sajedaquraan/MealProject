@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
 
 
 namespace MealProject.Controllers
@@ -141,7 +142,6 @@ namespace MealProject.Controllers
 
 
 
-
         public IActionResult Login(string returnUrl = null)
         {
             ViewBag.ReturnUrl = returnUrl;
@@ -149,32 +149,85 @@ namespace MealProject.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login([Bind("Email,Password")] Userlogin userlogin, string returnUrl = null)
+        public IActionResult Login([Bind("Email")] Userlogin userlogin, string returnUrl = null)
         {
             var auth = _context.Userlogins
-                .Where(x => x.Email == userlogin.Email && x.Password == userlogin.Password)
+                .Where(x => x.Email == userlogin.Email)
                 .SingleOrDefault();
 
             if (auth != null)
             {
-                switch (auth.Roleid)
-                {
-                    case 1:
-                        HttpContext.Session.SetInt32("CustomerID", (int)auth.Userid);
-                        HttpContext.Session.SetString("CustomerEmail", auth.Email);
-                        return RedirectToAction("Index", "Admin");
-                        break;
+                // Generate a random 6-digit verification code
+                var verificationCode = new Random().Next(100000, 999999).ToString();
 
-                    case 2:
-                        HttpContext.Session.SetInt32("CustomerID", (int)auth.Userid);
-                        HttpContext.Session.SetString("CustomerEmail", auth.Email);
-                        //return Redirect(returnUrl);
-                        return RedirectToAction("Index", "Home");
-                        break;
-                }
+                // Store the code and user information in the session
+                HttpContext.Session.SetString("VerificationCode", verificationCode);
+                HttpContext.Session.SetString("UserEmail", auth.Email);
+                HttpContext.Session.SetInt32("UserId", (int)auth.Userid);
 
+                // Send the verification code via email
+                SendVerificationEmail1(auth.Email, verificationCode);
 
-                // Redirect to the return URL if it exists, or to a default page
+                // Redirect to verification page
+                return RedirectToAction("VerifyCode1", new { returnUrl });
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Email not found!";
+            }
+
+            return View();
+        }
+
+        private void SendVerificationEmail1(string email, string verificationCode)
+        {
+            var fromAddress = new MailAddress("sajedaalquraan1@gmail.com", "Meal");
+            var toAddress = new MailAddress(email);
+            const string fromPassword = "izdw sras niqv jnnh"; // Ensure this is securely stored
+            const string subject = "Email Verification";
+            string body = $"Your verification code is {verificationCode}";
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body
+            })
+            {
+                smtp.Send(message);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult VerifyCode1(string returnUrl = null)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult VerifyCode1(string code, string returnUrl = null)
+        {
+            var storedCode = HttpContext.Session.GetString("VerificationCode");
+            var userId = HttpContext.Session.GetInt32("UserId");
+
+            if (storedCode == code)
+            {
+                // Clear the verification code from session
+                HttpContext.Session.Remove("VerificationCode");
+
+                // Log the user in by setting the session for the user
+                HttpContext.Session.SetInt32("CustomerID", userId.Value);
+
+                // Redirect to the return URL or home page
                 if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
                 {
                     return Redirect(returnUrl);
@@ -186,14 +239,13 @@ namespace MealProject.Controllers
             }
             else
             {
-                TempData["ErrorMessage"] = "Email or password not correct!";
+                TempData["ErrorMessage"] = "Invalid verification code!";
+                return RedirectToAction("VerifyCode1");
             }
-
-            return View();
         }
 
 
-        [HttpGet]
+            [HttpGet]
         public IActionResult ForgotPassword()
         {
             return View();

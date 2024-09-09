@@ -10,6 +10,13 @@
 @{
     var ErrorMessage = TempData["ErrorMessage"] as string;
 }
+
+
+@{
+    var ErrorMessage1 = TempData["errormessage"] as string;
+}
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,27 +84,8 @@
             position: relative; /* Ensure the container is positioned relative */
         }
 
-        .close-button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #fff;
-            border: 2px solid #000;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            text-align: center;
-            line-height: 30px;
-            font-size: 20px;
-            color: #000;
-            text-decoration: none;
-            z-index: 1000;
-        }
 
-            .close-button:hover {
-                background: #f0f0f0;
-                border-color: #333;
-            }
+     
 
         .custom-alert {
             max-width: 400px;
@@ -111,20 +99,41 @@
             height: 100vh;
         }
 
-        .fab.fa-google {
-            font-size: 30px; /* Larger size for the Google icon */
-            color: #db4437; /* Google brand color */
-            transition: transform 0.2s; /* Smooth hover effect */
+  
+
+
+        .google-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: black;
+            background-color: #fff; /* Google blue */
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
         }
 
-            .fab.fa-google:hover {
-                transform: scale(1.1); /* Slightly enlarge on hover */
+            .google-btn:hover {
+                background-color: #fff; /* Darker Google blue */
             }
 
+            .google-btn i {
+                margin-right: 8px;
+            }
     </style>
 </head>
 
 <body>
+
+
+@if (!string.IsNullOrEmpty(ErrorMessage1))
+     {
+        <div class="alert alert-danger custom-alert" role="alert">
+             @ErrorMessage
+        </div>
+     }
+
     <div class="container-fluid">
         <div class="row">
             <!-- Background Image Column -->
@@ -146,10 +155,10 @@
                                 <input type="email" name="email" placeholder="Enter Email" id="email"
                                        class="form-control pt-3 pb-3 pl-3 pr-0 input-auth" required>
                             </div>
-                            <div class="form-group mb-3">
+                           @*  <div class="form-group mb-3">
                                 <input type="password" name="password" placeholder="Password" id="password"
                                        class="form-control pt-3 pb-3 pl-3 pr-0 input-auth" required>
-                            </div>
+                            </div> *@
 
                             @if (!string.IsNullOrEmpty(successMessage))
                             {
@@ -185,10 +194,11 @@
 
                         <!-- Google Sign-In Button -->
                         <div>
-                            <a asp-controller="RegisterAndLogin" asp-action="Login1">
-                                <i class="fab fa-google"></i>
+                            <a asp-controller="RegisterAndLogin" asp-action="Login1" class="btn btn-primary">
+                                <i class="fab fa-google"></i> Sign in with Google
                             </a>
                         </div>
+
                     </div>
                 </div>
                

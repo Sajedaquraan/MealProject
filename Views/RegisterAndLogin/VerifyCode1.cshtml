@@ -1,0 +1,138 @@
+﻿
+@{
+    var ErrorMessage = TempData["ErrorMessage"] as string;
+}
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Reset Code</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="~/RegisterAndLogin/fonts/material-icon/css/material-design-iconic-font.min.css">
+    <!-- Bootstrap CSS for modal -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="~/RegisterAndLogin/css/style.css">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0;
+        }
+
+        .main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .container {
+            position: relative;
+            width: 400px; /* Set width for the window */
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #fff;
+            border: 2px solid #000;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            font-size: 20px;
+            color: #000;
+            text-decoration: none;
+            z-index: 1000;
+        }
+
+            .close-button:hover {
+                background: #f0f0f0;
+                border-color: #333;
+            }
+
+        .signin-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .signin-form {
+            width: 100%;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-control {
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main">
+        <!-- Sign in  Form -->
+        <section class="sign-in">
+            <div class="container">
+                <!-- Close Button -->
+                <a href="@Url.Action("Login", "RegisterAndLogin")" class="close-button" title="Go to Home Page">
+                    <span>&times;</span>
+                </a>
+                <div class="signin-content">
+                    <div class="signin-form">
+                        <h2>Enter the Code</h2>
+                        @if (!string.IsNullOrEmpty(ErrorMessage))
+                        {
+                            <div class="alert alert-danger">@ErrorMessage</div>
+                        }
+                        <form method="post" action="@Url.Action("VerifyCode1")">
+                            <div class="form-group">
+                                <label for="code">Verification Code</label>
+                                <input type="text" id="code" name="code" class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="~/RegisterAndLogin/js/main.js"></script>
+
+</body>
+</html>

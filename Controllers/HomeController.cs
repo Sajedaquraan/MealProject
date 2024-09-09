@@ -101,7 +101,7 @@ namespace MealProject.Controllers
 
             if (userLoginId == null)
             {
-                // If the user is not logged in, redirect to the login page
+                TempData["errormessage"] = "You must firstly Login to your account.";
                 return RedirectToAction("Login", "RegisterAndLogin");
             }
 
@@ -148,9 +148,9 @@ namespace MealProject.Controllers
             var userLoginId = HttpContext.Session.GetInt32("CustomerID");
 
             var user =_context.Customers.Where(x=>x.Userid == userLoginId).SingleOrDefault();
-            ViewBag.UserName = user.Username;
-            ViewBag.UserImage = user.Userimage;
-            ViewBag.UserEmail = user.Useremail;
+            ViewBag.UserName = user?.Username;
+            ViewBag.UserImage = user?.Userimage;
+            ViewBag.UserEmail = user?.Useremail;
 
             var Likedrecipe=_context.Likedrecipes.Where(x=>x.Userloginid== userLoginId).ToList();
 
@@ -168,9 +168,9 @@ namespace MealProject.Controllers
             var userLoginId = HttpContext.Session.GetInt32("CustomerID");
 
             var user = _context.Customers.Where(x => x.Userid == userLoginId).SingleOrDefault();
-            ViewBag.UserName = user.Username;
-            ViewBag.UserImage = user.Userimage;
-            ViewBag.UserEmail = user.Useremail;
+            ViewBag.UserName = user?.Username;
+            ViewBag.UserImage = user?.Userimage;
+            ViewBag.UserEmail = user?.Useremail;
 
 
             return View();
