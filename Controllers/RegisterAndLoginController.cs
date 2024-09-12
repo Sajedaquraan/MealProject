@@ -227,13 +227,36 @@ namespace MealProject.Controllers
                 // Log the user in by setting the session for the user
                 HttpContext.Session.SetInt32("CustomerID", userId.Value);
 
-                // Redirect to the return URL or home page
+                // Query the database for the user's RoleId
+                using (var db = new ModelContext())
+                {
+                    var userLogin = db.Userlogins.SingleOrDefault(u => u.Userid == userId.Value);
+                    if (userLogin != null)
+                    {
+                        var roleId = userLogin.Roleid;
+
+                        // Redirect based on RoleId
+                        if (roleId == 1)
+                        {
+                            // Redirect to Admin page
+                            return RedirectToAction("Index", "Admin");
+                        }
+                        else if (roleId == 2)
+                        {
+                            // Redirect to Home page
+                            return RedirectToAction("Index", "Home");
+                        }
+                    }
+                }
+
+                // If a returnUrl is provided and valid, redirect to that URL
                 if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
                 {
                     return Redirect(returnUrl);
                 }
                 else
                 {
+                    // Default redirect to Home page
                     return RedirectToAction("Index", "Home");
                 }
             }
@@ -245,7 +268,7 @@ namespace MealProject.Controllers
         }
 
 
-            [HttpGet]
+        [HttpGet]
         public IActionResult ForgotPassword()
         {
             return View();

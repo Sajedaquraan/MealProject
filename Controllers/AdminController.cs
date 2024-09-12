@@ -17,7 +17,17 @@ namespace MealProject.Controllers
 
         public IActionResult Index()
         {
+            var id = HttpContext.Session.GetInt32("CustomerID");
+            var users = _context.Customers.Where(x => x.Userid == id).SingleOrDefault();
+            ViewBag.name = users.Username;
+            ViewBag.image = users.ImageFile;
+            ViewBag.email = users.Useremail;
 
+            ViewBag.numberOfCustomer = _context.Customers.Count();
+
+            
+          
+           
             return View();
         }
     }
