@@ -41,8 +41,7 @@
     <!-- fancy box  -->
     <link rel="stylesheet" href="~/Home/css/jquery.fancybox.min.css">
     <!-- custom css  -->
-    <link rel="stylesheet" href="~/Home/style.css">
-    <link rel="stylesheet" href="~/Home/lang.css">
+    <link rel="stylesheet" href="~/Home/css/style.css">
 </head>
 
 <body class="body-fixed">
@@ -66,7 +65,7 @@
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
             <a href="@Url.Action("Index")" class="logo d-flex align-items-center">
-                <img src="~/Home/images/logo.svg" alt="">
+                <img src="~/logo.png" alt="">
                 <span></span>
             </a>
             <nav id="navbar" class="navbar">
@@ -326,7 +325,7 @@
                                         <ul class="filters">
                                             <div class="filter-active"></div>
                                             <li class="filter" data-filter=".all, .breakfast, .lunch, .dinner">
-                                                <img src="~/Home/images/menu-1.png" alt="">
+                                                <img src="~/Home/images/menu-1.png" class="allimg"  alt="">
                                                 All
                                             </li>
                                             <li class="filter" data-filter=".breakfast">
@@ -644,9 +643,9 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-7">
-                                    <div class="sec-text" id="scroll-text">
+                                    <div class="sec-text"  id="scroll-text">
                                         <form class="right-form" id="healthForm">
-                                            <p>Use our tools to better understand your health and fitness needs. The BMI (Body Mass Index) calculator helps you determine if you're within a healthy weight range based on your height and weight. The BMR (Basal Metabolic Rate) calculator estimates the number of calories your body needs at rest to maintain your current weight, based on your height, weight, and age.</p>
+                                            <p class="form-text">Use our tools to better understand your health and fitness needs. The BMI (Body Mass Index) calculator helps you determine if you're within a healthy weight range based on your height and weight. The BMR (Basal Metabolic Rate) calculator estimates the number of calories your body needs at rest to maintain your current weight, based on your height, weight, and age.</p>
                                             <a href="@Url.Action("BMI")" style="margin-right: 10px;" class="sec-btn right-btn">Calculate your BMI</a>
                                             <a href="@Url.Action("BMR")" style="margin-top: 10px;" class="sec-btn right-btn">Calculate your BMR</a>
                                         </form>
@@ -885,12 +884,8 @@
                                     <span></span>
                                 </a>
                                 <p style="font-weight: 100;">
-                                    We offer modern solutions for growing your business.
-                                    We are team of talented designers making websites.
-                                    With over four decades of experience in managing the systems and workings of
-                                    global enterprises, we expertly steer our clients through their digital journey.
-                                    Our always-on learning agenda drives their continuous improvement through building and
-                                    transferring digital skills, expertise, and ideas from our innovation ecosystem.
+                                    At MEALCRAFT, 
+                                    we believe that great food brings people together. Our mission is to provide you with a wide variety of nutritious, delicious, and easy-to-follow recipes. From quick meals to gourmet dishes, we aim to inspire your culinary creativity, whether you're a seasoned chef or just starting your cooking journey. We focus on healthy living, offering options for various dietary preferences like heart-healthy, low-sodium, and sugar-free meals. Our goal is to make meal planning simple and enjoyable, helping you lead a balanced and flavorful life.
                                 </p>
                                 <div class="social-links mt-3">
                                     <a href="https://www.twitter.com" target="_blank" class="twitter"><i class="bi bi-twitter"></i></a>
@@ -1017,7 +1012,7 @@
     <!-- smooth scroll  -->
     <script src="~/Home/js/smooth-scroll.js"></script>
     <!-- custom js  -->
-    <script src="~/Home/main.js"></script>
+    <script src="~/Home/js/main.js"></script>
     <script src="~/Home/langueages.js"></script>
     <script src="~/aboutus/aboutus.js"></script>
 
@@ -1104,29 +1099,7 @@
 
     <script>
             // ScrollReveal configuration for the first section
-        ScrollReveal().reveal('.sec-img', {
-          origin: 'left',
-          distance: '100px',
-          duration: 1000,
-          delay: 200,
-          opacity: 0,
-          easing: 'ease-in-out',
-
-          viewFactor: 0.5,
-          interval: 200,
-          cleanup: true
-        });
-        ScrollReveal().reveal('.sec-text', {
-          origin: 'right',
-          distance: '100px',
-          duration: 1000,
-          delay: 200,
-          opacity: 0,
-          easing: 'ease-in-out',
-          viewFactor: 0.5,
-          interval: 200,
-          cleanup: true
-        });
+       
         ScrollReveal().reveal('#ingredientForm label, #ingredientForm input, #ingredientForm a', {
           origin: 'right',
           distance: '100px',

@@ -2605,7 +2605,7 @@ display: block !important;
 }
 
 .menu-tab ul li img {
-  margin-right: 10px;
+  margin-left: -25px;
   position: relative;
   top: 1px;
 }
