@@ -1,5 +1,6 @@
 ﻿using MealProject.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 
 namespace MealProject.Controllers
 {
@@ -25,10 +26,29 @@ namespace MealProject.Controllers
 
             ViewBag.numberOfCustomer = _context.Customers.Count();
 
-            
-          
-           
-            return View();
+            ViewBag.Userrecipe = _context.Userrecipes.Count();
+
+            ViewBag.Likedrecipe = _context.Likedrecipes.Count();
+
+
+            var Userlogins = _context.Userlogins.ToList();
+            var Userrecipes = _context.Userrecipes.ToList();
+            var Likedrecipes = _context.Likedrecipes.ToList();
+
+            // Ensure that Userloginid matches in Userlogins and Likedrecipes
+            var result = from ul in Userlogins
+                         join ur in Userrecipes on ul.Userloginid equals ur.Userloginid
+                         join lr in Likedrecipes on ul.Userloginid equals lr.Userloginid  // Match Userloginid in Likedrecipes
+                         select new JoinTables
+                         {
+                             Userlogins = ul,
+                             Userrecipes = ur,
+                             Likedrecipes = lr  // Include liked recipes
+                         };
+
+            return View(result.ToList());  // Pass the result to the view
         }
+
+
     }
 }

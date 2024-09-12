@@ -1,4 +1,4 @@
-﻿@model Customer
+﻿@model List<JoinTables>
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -39,10 +39,108 @@
                     </div>
                 </div>
             </div>
-       
+
+
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-icon">
+                                <div class="icon-big text-center icon-primary bubble-shadow-small">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                            </div>
+                            <div class="col col-stats ms-3 ms-sm-0">
+                                <div class="numbers">
+                                    <p class="card-category">User recipe</p>
+                                    <h4 class="card-title">@ViewBag.Userrecipe</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-icon">
+                                <div class="icon-big text-center icon-primary bubble-shadow-small">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                            </div>
+                            <div class="col col-stats ms-3 ms-sm-0">
+                                <div class="numbers">
+                                    <p class="card-category">Liked recipe</p>
+                                    <h4 class="card-title">@ViewBag.Likedrecipe</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+         
         </div>
-        
-  
+
+
+
+        <div class="container">
+           
+            <h4>User Logins and Recipes</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Recipe Title</th>
+                        <th>Recipe Ingredients</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Userlogins.Email</td>
+                            <td>@item.Userrecipes.Title</td>
+                            <td>@item.Userrecipes.Ingredients</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+
+
+        <div class="container">
+
+            <h4>User Logins and Liked Recipes</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Recipe label</th>
+                        <th>Recipe data</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Userlogins.Email</td>
+                            <td>@item.Likedrecipes.Recipelabel</td>
+                            <td>@item.Likedrecipes.Recipedata</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+
+
+
     </div>
 </div>
 

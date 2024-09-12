@@ -253,7 +253,7 @@
                 <a href="@Url.Action("Index","Home")" class="nav-link" id="contact-tab">Home Page</a>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Liked Recipe</button>
+                <a href="@Url.Action("MEALSUGGESTIONS")" class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Liked Recipe</a>
             </li>
             <li class="nav-item" role="presentation">
                 <a href="@Url.Action("addrecipe")" class="nav-link" id="contact-tab" >Add Recipe</a>
@@ -276,8 +276,8 @@
                     </div> *@
 
                     <div class="action-links">
-                        <a href="@Url.Action("Edit", "Home" ,  new { id = ViewBag.UserId })"><h1>Edit Profile</h1></a>
-                        <a href="@Url.Action("Logout","RegisterAndLogin")"><h4>Logout</h4></a>
+@*                         <a href="@Url.Action("Edit", "Home" ,  new { id = ViewBag.UserId })"><h1>Edit Profile</h1></a>
+ *@                        <a href="@Url.Action("Logout","RegisterAndLogin")"><h4>Logout</h4></a>
                        
                     </div>
                 </div>

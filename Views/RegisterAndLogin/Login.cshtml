@@ -13,7 +13,7 @@
 
 
 @{
-    var ErrorMessage1 = TempData["errormessage"] as string;
+    var ErrorMessage1 = TempData["errormessage1"] as string;
 }
 
 
@@ -127,12 +127,6 @@
 <body>
 
 
-@if (!string.IsNullOrEmpty(ErrorMessage1))
-     {
-        <div class="alert alert-danger custom-alert" role="alert">
-             @ErrorMessage
-        </div>
-     }
 
     <div class="container-fluid">
         <div class="row">
@@ -141,6 +135,14 @@
                 <img src="~/loginn.PNG" alt="Background"
                      style="object-fit: cover; object-position: center;" class="w-100 full-h">
             </div>
+
+            @if (!string.IsNullOrEmpty(ErrorMessage1))
+            {
+                <div class="alert alert-danger custom-alert" role="alert">
+                    @ErrorMessage1
+                </div>
+            }
+
             <!-- Login Form Column -->
             <div class="full-h d-flex justify-content-center align-items-center col-12 col-md-8 col-lg-6">
                 <div class="col-10 col-md-8 col-xl-6 d-flex flex-column justify-content-center align-items-center font-weight-medium p-0">
@@ -159,6 +161,7 @@
                                 <input type="password" name="password" placeholder="Password" id="password"
                                        class="form-control pt-3 pb-3 pl-3 pr-0 input-auth" required>
                             </div> *@
+
 
                             @if (!string.IsNullOrEmpty(successMessage))
                             {
@@ -194,7 +197,7 @@
                                                                                     text-decoration: none;
                                                                                     transition: background-color 0.3s;
                                                                                     width: 350px;
-text-align:center;">
+                                                                                    text-align:center;">
                                 <i class="fab fa-google"></i> Sign in with Google
                             </a>
                         </div>
